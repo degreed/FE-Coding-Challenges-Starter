@@ -1,0 +1,16 @@
+<h1 id="tableLabel">Random Joke</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<div class="container px-0">
+  <div class="row gx-5">
+    <div class="col">
+      <button class="btn btn-primary" (click)="getRandomJoke()">
+        Fetch Me a Joke!
+      </button>
+    </div>
+    <div class="col">
+      <div *ngIf="joke$ | async as joke">{{ joke.text }}</div>
+    </div>
+  </div>
+</div>

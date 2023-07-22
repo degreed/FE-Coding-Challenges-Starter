@@ -1,0 +1,49 @@
+<h1 id="tableLabel">Jokes</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<div class="container px-0">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+    <div class="row g-3 align-items-center">
+      <div class="col-auto">
+        <label for="search" class="form-label">Search</label>
+      </div>
+      <div class="col-auto">
+        <input
+          name="searchTerm"
+          ngModel
+          required
+          #searchTerm="ngModel"
+          type="text"
+          class="form-control"
+          id="search"
+          placeholder="Type a search string here..."
+        />
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-primary">Search</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<ng-container *ngIf="jokes$ | async as jokes">
+  <table class="table table-striped" aria-labelledby="tableLabel">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Type</th>
+        <th>Text</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let config of jokeTableConfig">
+        <tr *ngFor="let joke of jokes[config.prop]">
+          <td>{{ joke.id }}</td>
+          <td>{{ config.type }}</td>
+          <td>{{ joke.text }}</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</ng-container>

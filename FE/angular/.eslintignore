@@ -1,0 +1,6 @@
+*package.json
+package-lock.json
+dist
+**/*.js
+**/*.spec.ts
+commitlint.config.js*
