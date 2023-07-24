@@ -21,9 +21,6 @@ We want you to succeed and show us what you can do!
 
 ## Getting Started
 
-To get started, please click a link below appropriate to your Engineering Interview.
+To get started, please click the FE Engineering link below:
 
-[![fe](https://github-production-user-asset-6210df.s3.amazonaws.com/210413/255335216-f97802c8-76d9-4159-b6fb-2961341d6345.jpg)](/guides/fe/1_welcome.md)
-[![be](https://github-production-user-asset-6210df.s3.amazonaws.com/210413/255335214-7dbbc52d-6340-4035-8a5e-55bf2ebf2647.jpg)](/guides/be/1_welcome.md)
-[![ai](https://github-production-user-asset-6210df.s3.amazonaws.com/210413/255335213-299c926c-8274-4dbb-a99f-e943e3f64b88.jpg)](/guides/ai/1_welcome.md)
-[![database](https://github-production-user-asset-6210df.s3.amazonaws.com/210413/255335215-39148517-1608-4d5e-b603-f2729ea83724.jpg)](/guides/dbs/1_welcome.md)
+[![fe](https://github-production-user-asset-6210df.s3.amazonaws.com/210413/255741403-b93307b2-8b75-41ee-be64-064c559cb304.png)](/guides/fe/1_welcome.md)
