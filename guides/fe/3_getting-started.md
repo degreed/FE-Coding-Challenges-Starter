@@ -21,7 +21,11 @@ To fix and improve the **Movie Search** web application, you will need to first 
 
 If you want to upgrade the packages and libraries, please do so. Just be prepared to explain why you updated each library. ;-)
 
----
+<br/>
+
+----
+
+<br/>
 
 ## Fix MovieSearch (required)
 
@@ -52,6 +56,9 @@ Here are tasks and considerations that will help you understand the scope of the
 Don't forget that you can also add (2) Refactors and (3) Bonus Extras to your code challenge!
 
 ---
+
+<br/>
+<br/>
 
 ### When Finished:
 
