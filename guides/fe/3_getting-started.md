@@ -1,12 +1,10 @@
-# Getting Started
-
-Here is what your web application UX looks like:
+# Code Challenge: Movie Search
 
 [![](https://github.com/ThomasBurleson/movie-search-rsm-react/assets/210413/4970a267-7c97-4bd0-abbb-69dcada13ba4)](https://github.com/ThomasBurleson/movie-search-rsm-react/assets/210413/4970a267-7c97-4bd0-abbb-69dcada13ba4)
 
 This ^ is an web application with simple master-detail view UX. But it currently does not work!
 
-To fix the **Movie Search** web application, you will need to first configure your local development environment with source, packages, and tools.
+To fix and improve the **Movie Search** web application, you will need to first configure your local development environment with source, packages, and tools.
 
 ## Developer Setup
 
@@ -25,7 +23,7 @@ If you want to upgrade the packages and libraries, please do so. Just be prepare
 
 ---
 
-## Fix MovieSearch
+## Fix MovieSearch (required)
 
 When initially compiling or serving the application, you will most likely see **compile**, **runtime**, and/or **UI errors**.
 
@@ -48,6 +46,10 @@ Here are tasks and considerations that will help you understand the scope of the
 - Demonstrate competence with RxJS
 - Address any a11y issues
 - Provide working, valid Jest tests
+
+---
+
+Don't forget that you can also add (2) Refactors and (3) Bonus Extras to your code challenge!
 
 ---
 
