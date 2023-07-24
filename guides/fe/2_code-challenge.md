@@ -6,9 +6,11 @@ The **Senior FE Engineer** code challenge has three aspects:
 2. **Refactors** (optional)
 3. **Enhancements** (optional)
 
+Please notes that all three (3) aspects will be graded assess the winner of a code challenge.
+
 ---
 
-## (1) “Bug Hunt”
+## 1) “Bug Hunt” (required)
 
 This is the required aspect of the code challenge.
 
@@ -20,7 +22,7 @@ You will need to:
 
   - ![](https://github.com/ThomasBurleson/movie-search-rsm-react/assets/210413/4970a267-7c97-4bd0-abbb-69dcada13ba4)
 
-### Your Tasks:
+#### Your Tasks:
 
 Here are tasks and considerations that will help you understand the scope of the minimum **required** fixes:
 
@@ -34,7 +36,7 @@ Here are tasks and considerations that will help you understand the scope of the
 
 ---
 
-## (2) Refactors (Optional)
+## 2) Refactors (Optional)
 
 Here are some suggestions if you want to improve the application solution beyond the minimum fixes:
 
@@ -48,7 +50,7 @@ Please be prepared to explain and discuss these refactors. You should be aware o
 
 ---
 
-## (3) Bonus Efforts (Optional)
+## 3) Bonus Efforts (Optional)
 
 Finally, here are some suggestions if you want to impress the Degreed team(s) with elite skills.
 
