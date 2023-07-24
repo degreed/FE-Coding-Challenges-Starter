@@ -71,7 +71,11 @@ When you are finished with the Code Challenge and wish to submit your results fo
 
 The interviewers will evaluate both your submission and your participation in the Code Review process. Both parts will be used to determine your success within the challenge.
 
+<br/>
+
 ---
+
+<br/>
 
 ### Github Tips
 
