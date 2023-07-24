@@ -6,6 +6,10 @@ This ^ is an web application with simple master-detail view UX. But it currently
 
 To fix and improve the **Movie Search** web application, you will need to first configure your local development environment with source, packages, and tools.
 
+<br/>
+<br/>
+
+
 ## Developer Setup
 
 - Fork the [FE Code Challenge - Starter](https://github.dev/degreed/fe-coding-challenge) repository
@@ -22,9 +26,6 @@ To fix and improve the **Movie Search** web application, you will need to first 
 If you want to upgrade the packages and libraries, please do so. Just be prepared to explain why you updated each library. ;-)
 
 <br/>
-
-----
-
 <br/>
 
 ## Fix MovieSearch (required)
