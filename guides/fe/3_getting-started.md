@@ -81,6 +81,8 @@ Both your solution and your Code Review participation will be used to determine 
 
 ### Github Tips
 
+<br/>
+
 ![](https://github.com/degreed/FE-Coding-Challenges-Starter/assets/210413/e628c672-8ed0-4bce-b0db-81dd799cac62)
 
 We encourage you to
