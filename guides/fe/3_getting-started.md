@@ -13,9 +13,7 @@ To fix and improve the **Movie Search** web application, you will need to first 
 ## Developer Setup
 
 - Fork the [FE Code Challenge - Starter](https://github.dev/degreed/fe-coding-challenge) repository
-  - this source will be your `upstream` repository.This repository is where you will also **submit** your Pull Request
-  - your cloud _fork_ will be your `origin` repository where you will manage your feature branch work
-- Clone the `origin` repository locally
+- Clone your Fork repository locally
 - Checkout a feature branch called `solution`
 - Go to the Angular or React application source using the Terminal:
   - `cd ./FE/angular`
@@ -65,12 +63,16 @@ Don't forget that you can also add (2) Refactors and (3) Bonus Extras to your co
 
 When you are finished with the Code Challenge and wish to submit your results for review:
 
-1. Prepare a **Pull-Request** (PR) on the 'upstream' repository.
-2. A FE Engineer will start a Code Review for your PR.
-3. A **Zoom meeting** may be requested to discuss your changes. You should expect _deep_ questions regarding why, impacts, and tradeoffs.
-4. Be prepared for possible requests to make changes and **update the PR**.
+1. Push your feature branch (with clean commits) to your Github repository 
+2. Prepare a **Pull-Request** (PR) on repo
+3. Add your Degreed Developers as "requested reviewers".
+4. The Degreed developers will start a Code Review on your PR: comments, suggestions, et
+5. A **Zoom meeting** may be requested to discuss your changes.
+  * You should expect _deep_ questions regarding why, impacts, and tradeoffs.
+7. Be prepared for possible requests to make changes and **update the PR**.
 
-The interviewers will evaluate both your submission and your participation in the Code Review process. Both parts will be used to determine your success within the challenge.
+The interviewers will evaluate both your submission and your participation in the Code Review process. 
+Both your solution and your Code Review participation will be used to determine your success within the challenge.
 
 <br/>
 <br/>
@@ -79,10 +81,10 @@ The interviewers will evaluate both your submission and your participation in th
 
 ### Github Tips
 
-![](https://github.com/ThomasBurleson/movie-search-rsm-react/assets/210413/acdfb9d3-796d-4cf5-b0b3-14dcbb50440d)
+![](https://github.com/degreed/FE-Coding-Challenges-Starter/assets/210413/e628c672-8ed0-4bce-b0db-81dd799cac62)
 
 We encourage you to
 
-- keep your commit history clean and organized.
-- keep your commit history clear and concise.
+- keep your commit history **clean and organized.**
+- keep your commit history **clear and concise**.
 - plan to show _phases_ of changes
