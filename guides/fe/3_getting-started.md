@@ -67,8 +67,7 @@ When you are finished with the Code Challenge and wish to submit your results fo
 2. Prepare a **Pull-Request** (PR) on repo
 3. Add your Degreed Developers as "requested reviewers".
 4. The Degreed developers will start a Code Review on your PR: comments, suggestions, et
-5. A **Zoom meeting** may be requested to discuss your changes.
-  * You should expect _deep_ questions regarding why, impacts, and tradeoffs.
+5. A **Zoom meeting** may be requested to discuss your changes. You should expect _deep_ questions regarding why, impacts, and tradeoffs.
 7. Be prepared for possible requests to make changes and **update the PR**.
 
 The interviewers will evaluate both your submission and your participation in the Code Review process. 
