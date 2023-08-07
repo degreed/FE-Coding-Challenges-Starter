@@ -64,7 +64,7 @@ Don't forget that you can also add (2) Refactors and (3) Bonus Extras to your co
 When you are finished with the Code Challenge and wish to submit your results for review:
 
 1. Push your feature branch (with clean commits) to your Github repository 
-2. Prepare a **Pull-Request** (PR) on repo
+2. Prepare a **Pull-Request** (PR) on *your* repo (not Degreed's)
 3. Add your Degreed Developers as "requested reviewers".
 4. The Degreed developers will start a Code Review on your PR: comments, suggestions, et
 5. A **Zoom meeting** may be requested to discuss your changes. You should expect _deep_ questions regarding why, impacts, and tradeoffs.
