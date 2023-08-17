@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { Router } from '@angular/router';
 import { BaseLink, Link } from '../../sidebar/sidebar.component';
 
 @Component({
@@ -12,7 +11,7 @@ export class DecadesComponent implements OnInit {
   @Input() public decades: number[];
   @Output() public updateDecade = new EventEmitter<number | undefined>();
 
-  public currentUrl = '';
+
   public links: BaseLink[];
 
   constructor(private router: Router) {}
@@ -29,9 +28,6 @@ export class DecadesComponent implements OnInit {
       }))
     ];
 
-    this.router.events
-      .pipe(filter((event) => !!(event instanceof NavigationEnd)))
-      .subscribe((event) => (this.currentUrl = (event as NavigationEnd).url));
   }
 
   public passDecade({ index, label }: Link) {

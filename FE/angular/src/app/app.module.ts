@@ -1,4 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
+import { NgOptimizedImage, provideImgixLoader } from '@angular/common'
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,8 +25,8 @@ import { DataService } from './services/data.service';
     AppComponent,
     DecadesComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [DataService, NavigationService],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgOptimizedImage],
+  providers: [DataService, NavigationService, provideImgixLoader('https://m.media-amazon.com/images/M/')],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

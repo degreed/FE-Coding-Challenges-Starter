@@ -4,25 +4,31 @@
   [currDecade]="currDecade"
   (updateDecade)="displayMovies($event)"
 ></app-decades>
-
-<ul class="movies" *ngIf="filteredMovies.length">
-  <li *ngFor="let movie of filteredMovies" class="grid grid-bleed">
-    <div class="image col-3"><img [src]="movie.Poster" /></div>
-    <div class="content col-9 col-grid">
-      <div class="title">{{ movie.Title }}</div>
-      <ul class="metadata">
-        <li class="rated">
-          <div>{{ movie.Rated }}</div>
-        </li>
-        <li class="runtime">{{ movie.Runtime }}</li>
-        <li class="release">{{ movie.Released }}</li>
-      </ul>
-      <div class="plot">
-        {{ movie.Plot }}
+<div class="movies">
+  <div class="movie-grid" *ngFor="let movie of filteredMovies">
+    <div class="image-section">
+      <img [ngSrc]="movie.Poster" width="100" height="100"/>
+    </div>
+    <div class="details-section">
+      <div class="title">
+        {{ movie.Title }}
+        <hr>
       </div>
-      <div class="nav flex-footer">
+      <div class="body">
+        <div class="metadata">
+          <div class="rated">
+            <div>{{ movie.Rated }}</div>
+          </div>
+          <div class="runtime">{{ movie.Runtime }}</div>
+          <div class="release">{{ movie.Released }}</div>
+        </div>
+        <div class="plot">
+          {{ movie.Plot }}
+        </div>
+      </div>
+      <div class="action-btn">
         <app-go-details [imdbId]="movie.imdbID"></app-go-details>
       </div>
     </div>
-  </li>
-</ul>
+  </div>
+</div>

@@ -66,7 +66,7 @@ export class DataService {
         Genre,
         imdbID,
         Plot,
-        Poster: Poster.replace(this.posterUrl, this.replacePosterUrl),
+        Poster: Poster.replace(this.posterUrl, ''),
         Rated,
         Released,
         Runtime,

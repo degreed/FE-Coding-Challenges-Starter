@@ -1,85 +1,149 @@
-.movie,
-.movies {
-  > li {
-    max-width: 800px;
-    margin-bottom: 28px;
-    padding: $mainFontSize;
-    flex-direction: column;
-    background: $paleGray;
-    border-radius: $radius;
+// .movie,
+// .movies {
+//   > li {
+//     max-width: 800px;
+//     margin-bottom: 28px;
+//     padding: $mainFontSize;
+//     flex-direction: column;
+//     background: $paleGray;
+//     border-radius: $radius;
+//     border: 2px solid $darkerGray;
+
+//     .image {
+//       padding-right: 30px;
+
+//       img {
+//         width: 100%;
+//         border-radius: $radius;
+//       }
+//     }
+
+//     .content {
+//       color: $darkerGray;
+
+//       .title {
+//         font-family: $fontStackAccent;
+//         font-size: $headerFontSize;
+//         font-weight: $fontWeightBold;
+//         height: $wideSpace;
+//         border-bottom: 1px solid $darkGray;
+//       }
+//       .details,
+//       .metadata {
+//         margin-top: 10px;
+//         font-family: $fontStack;
+//       }
+//       .details {
+//         font-size: $smallFontSize;
+//         li {
+//           margin-top: 5px;
+//         }
+//       }
+//       .metadata {
+//         font-size: $mainFontSize;
+//         overflow: hidden;
+
+//         li {
+//           margin-left: $wideSpace;
+//           display: inline-block;
+//         }
+
+//         .rated {
+//           color: $darkGray;
+//           font-family: $fontStackRating;
+//           margin-left: 0;
+
+//           div {
+//             display: inline-block;
+//             padding: 5px 10px;
+//             border: 1px solid $darkGray;
+//             border-radius: $radius;
+//           }
+//         }
+//         .release {
+//           text-align: right;
+//           margin-left: 0;
+//           float: right;
+//         }
+//       }
+//       .plot {
+//         margin-top: 17px;
+//         margin-bottom: 10px;
+//         font-family: $fontStack;
+//         font-size: $plotFontSize;
+//         font-weight: $fontWeightRegular;
+//       }
+//       .nav {
+//         text-align: right;
+
+//         button {
+//           margin-left: 10px;
+//         }
+//       }
+//     }
+//   }
+// }
+
+@mixin movie(){
+    display:grid;
+    grid-template-columns: 15% 85%;
     border: 2px solid $darkerGray;
-
-    .image {
-      padding-right: 30px;
-
-      img {
-        width: 100%;
-        border-radius: $radius;
-      }
+    gap:1rem;
+    padding:1rem;
+    background: $paleGray;
+    width:80%;
+    height:17rem;
+    & .image-section{
+        height:inherit;
+        & img{
+            width:100%;
+            height: 100%;
+        }
     }
-
-    .content {
-      color: $darkerGray;
-
-      .title {
-        font-family: $fontStackAccent;
-        font-size: $headerFontSize;
-        font-weight: $fontWeightBold;
-        height: $wideSpace;
-        border-bottom: 1px solid $darkGray;
-      }
-      .details,
-      .metadata {
-        margin-top: 10px;
-        font-family: $fontStack;
-      }
-      .details {
-        font-size: $smallFontSize;
-        li {
-          margin-top: 5px;
+    & .details-section{
+        position:relative;
+        display:grid;
+        grid-template-rows: 3.5rem auto auto;
+        // gap:1rem;
+        & .title{
+            font-size:$mainFontSize;
+            font-weight: $fontWeightBold;
         }
-      }
-      .metadata {
-        font-size: $mainFontSize;
-        overflow: hidden;
-
-        li {
-          margin-left: $wideSpace;
-          display: inline-block;
+        & .body{
+            & .metadata{
+                display:flex;
+                flex-direction: row;
+                width: 100%;
+                padding-right:1rem;
+                gap:1rem;
+                align-items: center;
+                padding-bottom: 1rem;
+                & .release{
+                    padding-right: 1rem;
+                    margin-left:auto
+                }
+                & .rated{
+                    border: 1px solid grey;
+                    width: max-content;
+                    padding: 0.3rem;
+                    border-radius: 0.5rem;
+                    color: grey;
+                }
+            }
+            & .casting{
+                padding-bottom:1rem;
+            }
+            & .plot{
+                font-size:large;
+                word-wrap: break-word;
+                max-width: 95%;
+                line-height: 1.5;
+            }
         }
-
-        .rated {
-          color: $darkGray;
-          font-family: $fontStackRating;
-          margin-left: 0;
-
-          div {
-            display: inline-block;
-            padding: 5px 10px;
-            border: 1px solid $darkGray;
-            border-radius: $radius;
-          }
+        & .action-btn{
+            position: absolute;
+            bottom: 0;
+            right:1rem;
         }
-        .release {
-          text-align: right;
-          margin-left: 0;
-          float: right;
-        }
-      }
-      .plot {
-        margin-top: 17px;
-        margin-bottom: 10px;
-        font-family: $fontStack;
-        font-size: $plotFontSize;
-        font-weight: $fontWeightRegular;
-      }
-      .nav {
-        text-align: right;
-
-        button {
-          margin-left: 10px;
-        }
-      }
     }
-  }
 }

@@ -1,0 +1,12 @@
+@import 'abstracts/variables';
+@import 'components/_movie.scss';
+.movies{
+    display:flex;
+    flex-direction: column;
+    gap:1rem;
+    align-items: center;
+    width: 100%;
+ & .movie-grid{
+    @include movie;
+ }
+}

@@ -1,0 +1,6 @@
+@import 'abstracts/variables';
+@import 'components/_movie.scss';
+.movie-grid{
+    margin-left:10%;
+    @include movie;
+ }
