@@ -1,42 +1,42 @@
-<app-go-back></app-go-back>
-  <div class="movie-grid">
-    <div class="image-section">
-      <img [ngSrc]="movie.Poster" width="100" height="100"/>
+<app-go-back [isHandset]="isHandset$ |async"></app-go-back>
+<div [ngClass]="{'movie-grid-sm': isSmallScreen(isHandset$ | async), 'movie-grid': !isSmallScreen(isHandset$ | async) }">
+  <div class="image-section">
+    <img [ngSrc]="movie.Poster" width="100" height="100" />
+  </div>
+  <div class="details-section">
+    <div class="title">
+      {{ movie.Title }}
+      <hr *ngIf="!isSmallScreen(isHandset$ | async)" />
     </div>
-    <div class="details-section">
-      <div class="title">
-        {{ movie.Title }}
-        <hr>
-      </div>
-      <div class="body">
-        <div class="metadata">
-          <div class="rated">
-            <span>{{ movie.Rated }}</span>
-          </div>
-          <div class="genre">{{ movie.Genre }}</div>
-          <div class="runtime">{{ movie.Runtime }}</div>
-          <div class="release">{{ movie.Released }}</div>
+    <div class="body">
+      <div class="metadata">
+        <div class="rated">
+          <span>{{ movie.Rated }}</span>
         </div>
-        <div class="casting">
-          <div>
-            <strong>Director:</strong>
+        <div class="genre">{{ movie.Genre }}</div>
+        <div class="runtime">{{ movie.Runtime }}</div>
+        <div class="release">{{ movie.Released }}</div>
+      </div>
+      <div class="casting">
+        <div>
+          <strong>Director:</strong>
           {{ movie.Director }}
-          </div>
-          <div>
-            <strong>Writer:</strong>
-            {{ movie.Writer }}
-          </div>
-          <div>
-            <strong>Stars:</strong>
-            {{ movie.Actors }}
-          </div>
         </div>
-        <div class="plot">
-          {{ movie.Plot }}
+        <div>
+          <strong>Writer:</strong>
+          {{ movie.Writer }}
+        </div>
+        <div>
+          <strong>Stars:</strong>
+          {{ movie.Actors }}
         </div>
       </div>
-      <div class="action-btn">
-        <app-go-imdb [imdbId]="movie.imdbID"></app-go-imdb>
+      <div class="plot">
+        {{ movie.Plot }}
       </div>
+    </div>
+    <div class="action-btn">
+      <app-go-imdb [imdbId]="movie.imdbID"></app-go-imdb>
     </div>
   </div>
+</div>

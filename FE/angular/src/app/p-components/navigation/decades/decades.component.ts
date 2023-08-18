@@ -9,8 +9,9 @@ import { BaseLink, Link } from '../../sidebar/sidebar.component';
 export class DecadesComponent implements OnInit {
   @Input() public currDecade: number | undefined;
   @Input() public decades: number[];
-  @Output() public updateDecade = new EventEmitter<number | undefined>();
+  @Input() public isHandset: boolean;
 
+  @Output() public updateDecade = new EventEmitter<number | undefined>();
 
   public links: BaseLink[];
 
@@ -27,7 +28,6 @@ export class DecadesComponent implements OnInit {
         label: `${decade}'s`
       }))
     ];
-
   }
 
   public passDecade({ index, label }: Link) {

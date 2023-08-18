@@ -1,19 +1,23 @@
 <app-decades
   *ngIf="decades.length"
   [decades]="decades"
+  [isHandset]="isHandset"
   [currDecade]="currDecade"
   (updateDecade)="displayMovies($event)"
 ></app-decades>
 <div class="movies">
   <!-- making use of track by efficiently handles re rendering of the elments -->
-  <div class="movie-grid" *ngFor="let movie of filteredMovies; trackBy:trackMoviesBy"> 
+  <div
+    [ngClass]="{ 'movie-grid': !isHandset, 'movie-grid-sm': isHandset }"
+    *ngFor="let movie of filteredMovies; trackBy: trackMoviesBy"
+  >
     <div class="image-section">
       <img [ngSrc]="movie.Poster" width="100" height="100" />
     </div>
     <div class="details-section">
       <div class="title">
         {{ movie.Title }}
-        <hr />
+        <hr *nIf="!isHandset" />
       </div>
       <div class="body">
         <div class="metadata">

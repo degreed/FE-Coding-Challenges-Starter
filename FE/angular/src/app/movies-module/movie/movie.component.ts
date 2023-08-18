@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Observable, Subject, combineLatest, takeUntil, tap } from 'rxjs';
 import { DataService, MovieComplete, MovieData } from '../../services/data.service';
 import { Store, select } from '@ngrx/store';
-import { getMovies } from '../store/store.state';
+import { getBreakpoint, getMovies } from '../store/store.state';
 
 @Component({
   selector: 'app-movie',
@@ -13,6 +13,7 @@ import { getMovies } from '../store/store.state';
 export class MovieComponent implements OnDestroy, OnInit {
   public movie: MovieComplete;
   public movieId: string;
+  public isHandset$: Observable<boolean>;
   private destroySubject$: Subject<boolean> = new Subject(); //this subject is for effeciently unsubscribing the obseravables on destroy of the component
 
   constructor(
@@ -32,6 +33,12 @@ export class MovieComponent implements OnDestroy, OnInit {
           this.movie = resp[1].find((movie) => movie.imdbID === this.movieId) as MovieComplete;
         }
       });
+
+    this.isHandset$ = this.store.pipe(select(getBreakpoint), takeUntil(this.destroySubject$));
+  }
+
+  public isSmallScreen(isHandset: boolean | null) {
+    return !!isHandset;
   }
 
   public ngOnDestroy(): void {

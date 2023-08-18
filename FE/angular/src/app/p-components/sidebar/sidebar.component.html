@@ -3,6 +3,7 @@
     *ngFor="let link of links; let index = index"
     (click)="onClick(link, index)"
     class="nav"
+    [ngClass]="{'nav-sm':isHandset}"
     [class.active]="link.isActive"
   >
     {{ link.label }}

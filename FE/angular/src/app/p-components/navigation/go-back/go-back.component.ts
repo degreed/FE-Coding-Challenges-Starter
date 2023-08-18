@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BaseLink } from '../../sidebar/sidebar.component';
 import { NavigationService } from '../../../services/navigation.service';
 
@@ -13,6 +13,7 @@ export class GoBackComponent {
       isActive: true
     }
   ];
+  @Input() isHandset: boolean | null;
 
   constructor(private navigationService: NavigationService) {}
 

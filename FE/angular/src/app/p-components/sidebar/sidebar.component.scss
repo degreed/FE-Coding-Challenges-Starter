@@ -12,6 +12,9 @@ nav {
     font-size: $smallFontSize;
     font-weight: $fontWeightBold;
     padding: 1rem 1.5rem;
+    &.nav-sm{
+      padding:0.5rem;
+    }
     border: 1px solid $lightGray;
     border-left-color: transparent;
     cursor: default;

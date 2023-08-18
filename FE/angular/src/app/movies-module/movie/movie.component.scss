@@ -4,3 +4,8 @@
     margin-left:10%;
     @include movie;
  }
+
+ .movie-grid-sm{
+    width:90% !important;
+    @include movie-sm;
+ }

@@ -16,6 +16,8 @@ export interface Link extends BaseLink {
 })
 export class SidebarComponent {
   @Input() public links: BaseLink[];
+  @Input() public isHandset: boolean | null;
+
   @Output() public linkClicked = new EventEmitter<Link>();
 
   public onClick(link: BaseLink, index: number) {

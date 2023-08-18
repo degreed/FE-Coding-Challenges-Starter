@@ -9,4 +9,7 @@
  & .movie-grid{
     @include movie;
  }
+ & .movie-grid-sm{
+   @include movie-sm
+ }
 }

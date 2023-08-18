@@ -10,6 +10,7 @@ import { MoviesComponent } from './movies/movies.component';
 import { MovieComponent } from './movie/movie.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/store.state';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [MoviesComponent, MovieComponent],
@@ -18,6 +19,7 @@ import { reducers } from './store/store.state';
     MoviesRoutingModule,
     NgOptimizedImage,
     PComponentsModule,
+    LayoutModule,
     StoreModule.forFeature('movies', reducers)
   ],
   providers: [
