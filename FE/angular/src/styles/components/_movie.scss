@@ -1,98 +1,12 @@
-// .movie,
-// .movies {
-//   > li {
-//     max-width: 800px;
-//     margin-bottom: 28px;
-//     padding: $mainFontSize;
-//     flex-direction: column;
-//     background: $paleGray;
-//     border-radius: $radius;
-//     border: 2px solid $darkerGray;
-
-//     .image {
-//       padding-right: 30px;
-
-//       img {
-//         width: 100%;
-//         border-radius: $radius;
-//       }
-//     }
-
-//     .content {
-//       color: $darkerGray;
-
-//       .title {
-//         font-family: $fontStackAccent;
-//         font-size: $headerFontSize;
-//         font-weight: $fontWeightBold;
-//         height: $wideSpace;
-//         border-bottom: 1px solid $darkGray;
-//       }
-//       .details,
-//       .metadata {
-//         margin-top: 10px;
-//         font-family: $fontStack;
-//       }
-//       .details {
-//         font-size: $smallFontSize;
-//         li {
-//           margin-top: 5px;
-//         }
-//       }
-//       .metadata {
-//         font-size: $mainFontSize;
-//         overflow: hidden;
-
-//         li {
-//           margin-left: $wideSpace;
-//           display: inline-block;
-//         }
-
-//         .rated {
-//           color: $darkGray;
-//           font-family: $fontStackRating;
-//           margin-left: 0;
-
-//           div {
-//             display: inline-block;
-//             padding: 5px 10px;
-//             border: 1px solid $darkGray;
-//             border-radius: $radius;
-//           }
-//         }
-//         .release {
-//           text-align: right;
-//           margin-left: 0;
-//           float: right;
-//         }
-//       }
-//       .plot {
-//         margin-top: 17px;
-//         margin-bottom: 10px;
-//         font-family: $fontStack;
-//         font-size: $plotFontSize;
-//         font-weight: $fontWeightRegular;
-//       }
-//       .nav {
-//         text-align: right;
-
-//         button {
-//           margin-left: 10px;
-//         }
-//       }
-//     }
-//   }
-// }
-
 @mixin movie(){
     display:grid;
-    grid-template-columns: 15% 85%;
+    grid-template-columns: 25% 75%;
     border: 2px solid $darkerGray;
     gap:1rem;
     padding:1rem;
     background: $paleGray;
-    width:80%;
-    height:17rem;
+    width:60%;
+    height:20rem;
     & .image-section{
         height:inherit;
         & img{

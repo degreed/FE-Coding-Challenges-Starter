@@ -1,32 +1,31 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgOptimizedImage, provideImgixLoader } from '@angular/common'
+import { NgOptimizedImage } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MovieComponent } from './components/movie/movie.component';
-import { MoviesComponent } from './components/movies/movies.component';
-import { DecadesComponent } from './components/navigation/decades/decades.component';
-import { GoBackComponent } from './components/navigation/go-back/go-back.component';
-import { GoDetailsComponent } from './components/navigation/go-details/go-details.component';
-import { GoImdbComponent } from './components/navigation/go-imdb/go-imdb.component';
-import { NavigationService } from './components/navigation/navigation.service';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { DataService } from './services/data.service';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { RootEffects } from './movies-module/store/store.effects';
 
 @NgModule({
-  declarations: [
-    MoviesComponent,
-    MovieComponent,
-    SidebarComponent,
-    GoBackComponent,
-    GoDetailsComponent,
-    GoImdbComponent,
-    AppComponent,
-    DecadesComponent
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NgOptimizedImage,
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+      autoPause: true
+    }),
+    EffectsModule.forRoot([RootEffects])
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgOptimizedImage],
-  providers: [DataService, NavigationService, provideImgixLoader('https://m.media-amazon.com/images/M/')],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

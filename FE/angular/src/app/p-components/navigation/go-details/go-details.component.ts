@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NavigationService } from '../navigation.service';
+import { NavigationService } from '../../../services/navigation.service';
 
 @Component({
   selector: 'app-go-details',
@@ -11,6 +11,6 @@ export class GoDetailsComponent {
   constructor(private navigationService: NavigationService) {}
 
   public navigateTo(id: string) {
-    this.navigationService.goTo('/movie', id);
+    this.navigationService.goTo('/movies', id);
   }
 }

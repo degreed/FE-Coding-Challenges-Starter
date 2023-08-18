@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, isDevMode } from '@angular/core';
-import { forkJoin, Observable, of, throwError } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { forkJoin, Observable, of } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
+import { MoviesInterFace } from '../movies-module/store/store.modal';
+import { getMoviesFromAPI } from '../movies-module/store/store.action';
 
 interface SearchResults {
   Response: string;
@@ -43,11 +46,10 @@ export interface MovieData {
 export class DataService {
   private decades: number[] = [];
   private posterUrl = 'https://m.media-amazon.com/images/M/';
-  private replacePosterUrl = '/assets/images/';
   private serviceUrl = 'https://www.omdbapi.com/?apikey=f59b2e4b&';
   private storedMovies: MovieData = { Search: [], Decades: [] };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private store: Store<MoviesInterFace>) {}
 
   public getFilteredMovies(movies: MovieComplete[], decade?: number): MovieComplete[] {
     if (!decade) {
@@ -101,9 +103,26 @@ export class DataService {
         Search = Search.sort(({ Year: year1 }: MovieComplete, { Year: year2 }: MovieComplete) => year1 - year2);
         this.decades.sort((a, b) => a - b);
         this.storedMovies = { Search, Decades: this.decades };
-
+        console.log(this.storedMovies); // emitting a stream after successful api call
         return this.storedMovies;
       })
     );
+  }
+  // instead returning the subject, keeping subject as private and returning it as observable would help in encapsulation, and the component won't have ability to emit value into subject,
+  public setMovies(movies: MovieComplete[], decades: number[]) {
+    this.storedMovies = {
+      Search: movies,
+      Decades: decades
+    };
+  }
+  // check if API response is stored locally inside storedMovies variable
+  public hasMovies() {
+    console.log(this.storedMovies);
+    return this.storedMovies?.Search.length > 0;
+  }
+
+  // Dispatch store action for fetching data from apis
+  public loadMoviesDataToStore() {
+    this.store.dispatch(getMoviesFromAPI());
   }
 }

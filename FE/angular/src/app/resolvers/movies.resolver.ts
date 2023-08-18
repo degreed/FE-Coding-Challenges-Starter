@@ -3,6 +3,6 @@ import { ResolveFn } from '@angular/router';
 import { DataService } from '../services/data.service';
 
 export const movieResolver: ResolveFn<any> = (route, state) => {
-  const dashboardService = inject(DataService)
-  return dashboardService.getMovies()
+  const dashboardService = inject(DataService);
+  dashboardService.loadMoviesDataToStore();
 };

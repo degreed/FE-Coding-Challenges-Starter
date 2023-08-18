@@ -1,22 +1,20 @@
 import { Router } from '@angular/router';
-import { mockProvider, SpectatorService } from '@ngneat/spectator';
+import { SpectatorService } from '@ngneat/spectator';
 import { createServiceFactory } from '@ngneat/spectator/jest';
 import { NavigationService } from './navigation.service';
+import { TestBed } from '@angular/core/testing';
 
-const mockNavigate = jest.fn().mockResolvedValue([]);
-const mockRouter = mockProvider(Router, {
-  navigate: mockNavigate
-});
 
 describe('NavigationService', () => {
   let spectator: SpectatorService<NavigationService>;
   let service: NavigationService;
+  let router:Router;
 
   const createService = createServiceFactory({
     service: NavigationService,
     imports: [],
     declarations: [],
-    providers: [mockRouter]
+    providers: []
   });
 
   beforeEach(() => {
@@ -24,6 +22,7 @@ describe('NavigationService', () => {
     jest.restoreAllMocks();
     spectator = createService();
     service = spectator.service;
+    router = TestBed.get(Router)
   });
 
   test('should create the component', () => {
@@ -32,16 +31,18 @@ describe('NavigationService', () => {
 
   describe('goTo', () => {
     test('should pass single argument', () => {
+      const navigateSpy = jest.spyOn(router,'navigate');
       service.goTo('/');
-      expect(mockNavigate).toBeCalledWith(['/']);
+      expect(navigateSpy).toBeCalledWith(['/']);
     });
     test('should pass multiple arguments', () => {
+      const navigateSpy = jest.spyOn(router,'navigate');
       service.goTo('/movie', 'tt123');
-      expect(mockNavigate).toBeCalledWith(['/movie', 'tt123']);
+      expect(navigateSpy).toBeCalledWith(['/movie', 'tt123']);
     });
     test('should throw errors', (done) => {
       const mockError = 'mock error';
-      mockNavigate.mockRejectedValueOnce(mockError);
+      const navigateSpy = jest.spyOn(router,'navigate').mockRejectedValueOnce(mockError);
       service.goTo('/').then(
         () => fail('Error not thrown.'),
         () => {

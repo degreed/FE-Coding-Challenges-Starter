@@ -1,8 +1,12 @@
 import { mockProvider, Spectator } from '@ngneat/spectator';
 import { createComponentFactory } from '@ngneat/spectator/jest';
 import { of } from 'rxjs';
-import { DataService } from '../../services/data.service';
+import { DataService, MovieComplete } from '../../services/data.service';
 import { MoviesComponent } from './movies.component';
+import { Store, StoreModule } from '@ngrx/store';
+import { signal } from '@angular/core';
+import { provideMockStore } from '@ngrx/store/testing';
+import { getDecades, getMovies } from '../store/store.state';
 
 const mockDecades = [2000];
 const mockMovies = [
@@ -46,6 +50,10 @@ const mockDataService = mockProvider(DataService, {
   getMovies: mockGetMovies,
   getFilteredMovies: mockGetFilteredMovies
 });
+const storeValue = signal<number[] | MovieComplete[]>(mockDecades);
+const mockStore = mockProvider(Store, {
+  pipe: () => of(storeValue)
+});
 
 describe('MovieComponent', () => {
   let spectator: Spectator<MoviesComponent>;
@@ -54,7 +62,25 @@ describe('MovieComponent', () => {
     component: MoviesComponent,
     imports: [],
     declarations: [],
-    providers: [mockDataService],
+    providers: [
+      mockDataService,
+      provideMockStore({
+        initialState: {
+          Search: mockMovies,
+          Decades: mockDecades
+        },
+        selectors: [
+          {
+            selector: getMovies,
+            value: mockMovies
+          },
+          {
+            selector: getDecades,
+            value: mockDecades
+          }
+        ]
+      })
+    ],
     shallow: true,
     detectChanges: false
   });
@@ -70,13 +96,12 @@ describe('MovieComponent', () => {
   });
 
   describe('ngOnInit', () => {
-    beforeEach(() => {
-      component.ngOnInit();
-    });
     test('should set decades', () => {
+      component.ngOnInit();
       expect(component.decades).toEqual(mockDecades);
     });
     test('should set movies array', () => {
+      component.ngOnInit();
       expect(component.movies).toEqual(mockMovies);
     });
   });
@@ -87,13 +112,15 @@ describe('MovieComponent', () => {
     });
     describe('WHEN movies are defined', () => {
       beforeEach(() => {
-        component.displayMovies();
+        component.movies = mockMovies;
+        component.displayMovies(2000);
       });
       test('should set filteredMovies', () => {
         expect(component.filteredMovies).toEqual([mockMovies[0]]);
       });
       describe('AND a decade is passed in', () => {
         beforeEach(() => {
+          component.movies = mockMovies;
           component.displayMovies(2000);
         });
         test('should set currDecade', () => {
