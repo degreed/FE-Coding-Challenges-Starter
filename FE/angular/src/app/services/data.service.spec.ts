@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { mockProvider, SpectatorService } from '@ngneat/spectator';
 import { createServiceFactory } from '@ngneat/spectator/jest';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { DataService } from './data.service';
+import { TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+import { getDecades, getMovies } from '../movies-module/store/store.state';
 
 const mockGet = jest.fn().mockReturnValue(of([]));
 const mockHttpClient = mockProvider(HttpClient, {
@@ -54,7 +57,25 @@ describe('DataService', () => {
     service: DataService,
     imports: [],
     declarations: [],
-    providers: [mockHttpClient]
+    providers: [
+      mockHttpClient,
+      provideMockStore({
+        initialState: {
+          Search: mockMovies,
+          Decades: mockDecades
+        },
+        selectors: [
+          {
+            selector: getMovies,
+            value: mockMovies
+          },
+          {
+            selector: getDecades,
+            value: mockDecades
+          }
+        ]
+      })
+    ]
   });
 
   beforeEach(() => {
@@ -83,23 +104,29 @@ describe('DataService', () => {
 
   describe('getMovie', () => {
     const mockMovie = mockMovies[0];
+    let moviesSpy: jest.SpyInstance<Observable<unknown>>;
     beforeEach(() => {
       mockGet.mockReturnValueOnce(of(mockMovie));
+      const httpClient = TestBed.get(HttpClient) as HttpClient;
+      moviesSpy = jest.spyOn(httpClient, 'get');
       service.getMovie(mockMovie.imdbID);
     });
     test('should call http.get', () => {
-      expect(mockGet).toBeCalledWith(`${serviceUrl}i=${mockMovie.imdbID}`);
+      expect(moviesSpy).toBeCalledWith(`${serviceUrl}i=${mockMovie.imdbID}`);
     });
   });
 
   describe('getMovies', () => {
+    let moviesSpy: jest.SpyInstance<Observable<unknown>>;
     beforeEach(() => {
       mockGet.mockReturnValueOnce(of({ Response: 'True', Search: mockMovies, totalResults: '2' }));
-      mockGet.mockReturnValue(of(mockMovies[1]));
+      // mockGet.mockReturnValue(of(mockMovies[1]));
+      const httpClient = TestBed.get(HttpClient) as HttpClient;
+      moviesSpy = jest.spyOn(httpClient, 'get');
       service.getMovies();
     });
     test('should call http.get', () => {
-      expect(mockGet).toBeCalledWith(`${serviceUrl}s=Batman&type=movie`);
+      expect(moviesSpy).toBeCalledWith(`${serviceUrl}s=Batman&type=movie`);
     });
   });
 });
