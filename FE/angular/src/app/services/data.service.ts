@@ -113,9 +113,12 @@ export class DataService {
       Search: movies,
       Decades: decades
     };
+    localStorage.setItem('storedMovies', JSON.stringify(this.storedMovies));
   }
   // check if API response is stored locally inside storedMovies variable
   public hasMovies() {
+    const storedItemsStr: string = localStorage.getItem('storedMovies') as string;
+    this.storedMovies = JSON.parse(storedItemsStr) as MovieData;
     return this.storedMovies?.Search.length > 0;
   }
 

@@ -11,7 +11,7 @@
     "test:watch": "ng test --watch",
     "lint": "ng lint",
     "iwld": "npm i --legacy-peer-deps",
-    "start-pwa": "ng build --base-href 'https://sampatkumar-mca17.github.io/FE-Coding-Challenges-Starter' && http-server -p 8080 -c-1 dist/fe-angular"
+    "start-pwa": "ng build && http-server -p 8080 -c-1 dist/fe-angular"
   },
   "author": "degreed",
   "license": "ISC",
