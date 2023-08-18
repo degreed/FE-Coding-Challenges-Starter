@@ -103,12 +103,11 @@ export class DataService {
         Search = Search.sort(({ Year: year1 }: MovieComplete, { Year: year2 }: MovieComplete) => year1 - year2);
         this.decades.sort((a, b) => a - b);
         this.storedMovies = { Search, Decades: this.decades };
-        console.log(this.storedMovies); // emitting a stream after successful api call
         return this.storedMovies;
       })
     );
   }
-  // instead returning the subject, keeping subject as private and returning it as observable would help in encapsulation, and the component won't have ability to emit value into subject,
+  // Storing movies locally,
   public setMovies(movies: MovieComplete[], decades: number[]) {
     this.storedMovies = {
       Search: movies,
@@ -117,7 +116,6 @@ export class DataService {
   }
   // check if API response is stored locally inside storedMovies variable
   public hasMovies() {
-    console.log(this.storedMovies);
     return this.storedMovies?.Search.length > 0;
   }
 

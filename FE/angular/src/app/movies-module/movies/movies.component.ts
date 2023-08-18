@@ -34,6 +34,11 @@ export class MoviesComponent implements OnDestroy, OnInit {
       });
   }
 
+  // tracking loop elements by movie.imdbID , helps in efficiently handling re-rendering of the html elements
+  public trackMoviesBy(index: number, movie: MovieComplete) {
+    return movie.imdbID;
+  }
+
   public ngOnDestroy(): void {
     this.destroySubject.next(true);
     this.destroySubject.complete();
