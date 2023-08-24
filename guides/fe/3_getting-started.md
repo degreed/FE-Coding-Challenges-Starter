@@ -12,7 +12,7 @@ To fix and improve the **Movie Search** web application, you will need to first 
 
 ## Developer Setup
 
-- Fork the [FE Code Challenge - Starter](https://github.dev/degreed/fe-coding-challenge) repository
+- Fork the [FE Code Challenge - Starter](https://github.com/degreed/FE-Coding-Challenges-Starter) repository
 - Clone your Fork repository locally
 - Checkout a feature branch called `solution`
 - Go to the Angular or React application source using the Terminal:
