@@ -101,10 +101,16 @@ describe('MovieComponent', () => {
         });
       });
     });
-    describe('WHEN movies are undefined', () => {
+    describe('WHEN movies are empty', () => {
       test('should set filteredMovies to an empty array', () => {
         component.movies = [];
-        spectator.detectComponentChanges();
+        component.displayMovies();
+        expect(component.filteredMovies).toEqual([]);
+      });
+    });
+    describe('WHEN movies are undefined', () => {
+      test('should set filteredMovies to an empty array', () => {
+        component.movies = undefined;
         component.displayMovies();
         expect(component.filteredMovies).toEqual([]);
       });

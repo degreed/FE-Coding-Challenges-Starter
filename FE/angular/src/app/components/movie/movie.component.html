@@ -2,8 +2,9 @@
 
 <ul *ngIf="movie" class="movie">
   <li class="grid grid-bleed">
+    <div class="col-12 row">
     <div class="image col-3"><img [src]="movie.Poster" /></div>
-    <div class="content col-9 col-grid">
+    <div class="content col-9">
       <div class="title">{{ movie.Title }} ({{ movie.Year }})</div>
       <ul class="metadata">
         <li class="rated">
@@ -34,5 +35,6 @@
         <app-go-imdb [imdbId]="movie.imdbID"></app-go-imdb>
       </div>
     </div>
+  </div>
   </li>
 </ul>

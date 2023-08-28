@@ -7,9 +7,13 @@
 
 <ul class="movies" *ngIf="filteredMovies.length">
   <li *ngFor="let movie of filteredMovies" class="grid grid-bleed">
-    <div class="image col-3"><img [src]="movie.Poster" /></div>
-    <div class="content col-9 col-grid">
-      <div class="title">{{ movie.Title }}</div>
+    <div class="col-12 row">
+
+    <!--Yojana Pandey--Two image paths were not correct into the assests/images folder so I replaced them with the correct path. Also, I added alt-text to the image if in case image will not be available-->
+    <div class="image col-3"><img [alt] = "movie.Title" [src]="movie.Poster" /></div> 
+    <div class="content col-9">
+      <!--Yojana Pandey -- Added Custom Pipe in order truncate long text coming from JSON and added the full text as tooltip on hover-->
+      <div class="title" [innerHTML]="movie.Title | truncateWithTooltip: 40">{{ movie.Title }}</div>
       <ul class="metadata">
         <li class="rated">
           <div>{{ movie.Rated }}</div>
@@ -24,5 +28,6 @@
         <app-go-details [imdbId]="movie.imdbID"></app-go-details>
       </div>
     </div>
+  </div>
   </li>
 </ul>

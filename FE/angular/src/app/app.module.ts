@@ -12,6 +12,7 @@ import { GoImdbComponent } from './components/navigation/go-imdb/go-imdb.compone
 import { NavigationService } from './components/navigation/navigation.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DataService } from './services/data.service';
+import { TruncateWithTooltipPipe } from './components/movies/truncateWithTooltip.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DataService } from './services/data.service';
     GoDetailsComponent,
     GoImdbComponent,
     AppComponent,
-    DecadesComponent
+    DecadesComponent,
+    TruncateWithTooltipPipe // Created Custom Pipe to truncate long text
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [DataService, NavigationService],

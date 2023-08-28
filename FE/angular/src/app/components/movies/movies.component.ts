@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { tap } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { DataService, MovieComplete } from '../../services/data.service';
 
 @Component({
@@ -10,23 +10,24 @@ export class MoviesComponent implements OnDestroy, OnInit {
   public currDecade: number | undefined;
   public decades: number[] = [];
   public filteredMovies: MovieComplete[] = [];
-  public movies: MovieComplete[] = [];
+  public movies: MovieComplete[] | undefined;
   private moviesSubscription: any;
+  private subscription : Subscription;
 
   constructor(private dataService: DataService) {}
 
   public ngOnInit(): void {
-    this.moviesSubscription = this.dataService.getMovies().pipe(
-      tap((data) => {
+
+    
+   
+    this.moviesSubscription = this.dataService.getMovies().subscribe( //Yojana Pandey : Replaced .pipe with .subscribe because we need to subscribe observables in order to get data.
+      (data) => {
         this.decades = data.Decades;
         this.movies = data.Search;
         this.displayMovies();
+        
       })
-    );
-  }
-
-  public ngOnDestroy(): void {
-    this.moviesSubscription.unsubscribe();
+    
   }
 
   public displayMovies(decade?: number): void {
@@ -37,5 +38,8 @@ export class MoviesComponent implements OnDestroy, OnInit {
 
     this.currDecade = decade;
     this.filteredMovies = this.dataService.getFilteredMovies(this.movies, decade);
+  }
+  public ngOnDestroy(): void {
+    this.moviesSubscription.unsubscribe();
   }
 }
