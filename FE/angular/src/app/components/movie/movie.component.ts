@@ -11,9 +11,9 @@ export class MovieComponent implements OnDestroy, OnInit {
   public movie: MovieComplete;
   public movieId = '';
   private movieSubscription: any;
-  private subscription : Subscription;
+  private subscription: Subscription;
 
-  constructor(private activatedRoute: ActivatedRoute, private dataService: DataService) {}
+  constructor(private activatedRoute: ActivatedRoute, private dataService: DataService) { }
 
   public ngOnInit() {
     this.activatedRoute.params.subscribe(({ id }) => (this.movieId = id));

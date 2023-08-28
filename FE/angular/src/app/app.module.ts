@@ -30,4 +30,4 @@ import { TruncateWithTooltipPipe } from './components/movies/truncateWithTooltip
   providers: [DataService, NavigationService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

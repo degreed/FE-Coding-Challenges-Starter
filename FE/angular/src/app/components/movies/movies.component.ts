@@ -12,22 +12,22 @@ export class MoviesComponent implements OnDestroy, OnInit {
   public filteredMovies: MovieComplete[] = [];
   public movies: MovieComplete[] | undefined;
   private moviesSubscription: any;
-  private subscription : Subscription;
+  private subscription: Subscription;
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService) { }
 
   public ngOnInit(): void {
 
-    
-   
+
+
     this.moviesSubscription = this.dataService.getMovies().subscribe( //Yojana Pandey : Replaced .pipe with .subscribe because we need to subscribe observables in order to get data.
       (data) => {
         this.decades = data.Decades;
         this.movies = data.Search;
         this.displayMovies();
-        
+
       })
-    
+
   }
 
   public displayMovies(decade?: number): void {
