@@ -1,13 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, isDevMode } from '@angular/core';
-import { forkJoin, Observable, of, throwError } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
-
-interface SearchResults {
-  Response: string;
-  Search: Movie[];
-  totalResults: string;
-}
+import { Injectable } from '@angular/core';
+import { forkJoin, Observable, of } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
 
 interface Movie {
   imdbID: string;
@@ -83,12 +77,12 @@ export class DataService {
       return of(this.storedMovies);
     }
 
-    return this.http.get<SearchResults>(`${this.serviceUrl}s=Batman&type=movie`).pipe(
+    return this.http.get<MovieData>(`${this.serviceUrl}s=Batman&type=movie`).pipe(
       mergeMap(({ Search }) =>
         forkJoin(
           Search.map(({ imdbID, Year }) => {
             // add decade to decades
-            const decade = Math.ceil(parseInt(Year as string) / 10) * 10 - 10;
+            const decade = Math.ceil(parseInt(Year.toString()) / 10) * 10 - 10;
             if (this.decades.indexOf(decade) < 0) {
               this.decades.push(decade);
             }

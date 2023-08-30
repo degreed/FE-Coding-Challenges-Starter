@@ -3,22 +3,43 @@ import { mockProvider, Spectator } from '@ngneat/spectator';
 import { createComponentFactory } from '@ngneat/spectator/jest';
 import { DataService } from '../../services/data.service';
 import { MovieComponent } from './movie.component';
+import { of } from 'rxjs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { fakeAsync } from '@angular/core/testing';
 
-const mockActivatedRoute = mockProvider(ActivatedRoute, {
-  params: jest.fn()
-});
 const mockDataService = mockProvider(DataService, {
-  getMovie: jest.fn()
+  getMovie(id: string) {
+    return of({});
+  }
 });
+
+const activatedRouteStub = {
+  paramMap: {
+    get(id: string) {
+      return 234;
+    }
+  }
+};
 
 describe('MovieComponent', () => {
   let spectator: Spectator<MovieComponent>;
   let component: MovieComponent;
   const createComponent = createComponentFactory({
     component: MovieComponent,
-    imports: [],
+    imports: [HttpClientTestingModule],
     declarations: [],
-    providers: [mockActivatedRoute, mockDataService],
+    providers: [
+      {
+        provide: ActivatedRoute,
+        useValue: {
+          snapshot: activatedRouteStub
+        }
+      },
+      {
+        provide: DataService,
+        useValue: mockDataService
+      }
+    ],
     shallow: true,
     detectChanges: false
   });
@@ -28,8 +49,7 @@ describe('MovieComponent', () => {
     component = spectator.component;
   });
 
-  test('should create the component', () => {
-    component.ngOnInit();
+  test("should create the component", fakeAsync(()=>{
     expect(component).toBeTruthy();
-  });
+  }))
 });

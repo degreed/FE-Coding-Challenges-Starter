@@ -2,9 +2,10 @@
 
 <ul *ngIf="movie" class="movie">
   <li class="grid grid-bleed">
-    <div class="image col-3"><img [src]="movie.Poster" /></div>
-    <div class="content col-9 col-grid">
-      <div class="title">{{ movie.Title }} ({{ movie.Year }})</div>
+    <div class="row">
+    <div class="image col-3"><img [src]="movie.Poster" onError="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png'"/></div>
+    <div class="content col-9">
+      <div class="title ellipsis">{{ movie.Title }} ({{ movie.Year }})</div>
       <ul class="metadata">
         <li class="rated">
           <div>{{ movie.Rated }}</div>
@@ -34,5 +35,6 @@
         <app-go-imdb [imdbId]="movie.imdbID"></app-go-imdb>
       </div>
     </div>
+  </div>
   </li>
 </ul>
