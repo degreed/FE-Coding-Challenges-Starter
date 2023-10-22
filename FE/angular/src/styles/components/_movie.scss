@@ -1,5 +1,9 @@
 .movie,
 .movies {
+  .flex-wrapper {
+    display: flex;
+    flex-direction: row;
+}
   > li {
     max-width: 800px;
     margin-bottom: 28px;
@@ -25,7 +29,7 @@
         font-family: $fontStackAccent;
         font-size: $headerFontSize;
         font-weight: $fontWeightBold;
-        height: $wideSpace;
+        min-height: $wideSpace;
         border-bottom: 1px solid $darkGray;
       }
       .details,

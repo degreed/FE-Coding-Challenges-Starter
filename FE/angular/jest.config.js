@@ -1,12 +1,16 @@
+const { pathsToModuleNameMapper } = require('ts-jest');
+const { compilerOptions } = require('./tsconfig');
+
 module.exports = {
-  globals: {
-    'ts-jest': {
-      tsconfig: 'tsconfig.json'
-    }
-  },
   preset: 'jest-preset-angular',
+  roots: ['<rootDir>/src/'],
+  testMatch: ['**/+(*.)+(spec).+(ts)'],
   setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
-  testRunner: 'jest-jasmine2',
-  globalSetup: 'jest-preset-angular/global-setup',
-  verbose: true
+  collectCoverage: true,
+  coverageReporters: ['html'],
+  coverageDirectory: 'coverage/angular-jest',
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths || {}, {
+    prefix: '<rootDir>/'
+  }),
+  testRunner: 'jasmine2'
 };
