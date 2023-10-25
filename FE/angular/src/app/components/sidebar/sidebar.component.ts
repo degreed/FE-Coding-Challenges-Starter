@@ -1,13 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-
-export interface BaseLink {
-  isActive: boolean;
-  label: string;
-}
-
-export interface Link extends BaseLink {
-  index: number;
-}
+import { BaseLink } from './models/base-link';
+import { Link } from './models/link';
 
 @Component({
   selector: 'app-sidebar',

@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { BaseLink, Link } from '../../sidebar/sidebar.component';
+import { BaseLink } from '../../sidebar/models/base-link';
+import { Link } from '../../sidebar/models/link';
 
 @Component({
   selector: 'app-decades',

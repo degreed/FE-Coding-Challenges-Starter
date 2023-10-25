@@ -26,6 +26,7 @@ describe('MovieComponent', () => {
   beforeEach(() => {
     spectator = createComponent();
     component = spectator.component;
+    spyOn(component,'ngOnInit');
   });
 
   test('should create the component', () => {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BaseLink } from '../../sidebar/sidebar.component';
+import { BaseLink } from '../../sidebar/models/base-link';
 import { NavigationService } from '../navigation.service';
 
 @Component({
