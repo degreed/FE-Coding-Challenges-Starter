@@ -13,6 +13,8 @@ import { NavigationService } from './components/navigation/navigation.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DataService } from './services/data.service';
 
+import { FilterByDecadePipe } from './pipes/filterByDecade.pipe';
+
 @NgModule({
   declarations: [
     MoviesComponent,
@@ -22,7 +24,8 @@ import { DataService } from './services/data.service';
     GoDetailsComponent,
     GoImdbComponent,
     AppComponent,
-    DecadesComponent
+    DecadesComponent,
+    FilterByDecadePipe
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [DataService, NavigationService],

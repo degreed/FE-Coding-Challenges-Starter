@@ -2,11 +2,11 @@
   *ngIf="decades.length"
   [decades]="decades"
   [currDecade]="currDecade"
-  (updateDecade)="displayMovies($event)"
+  (updateDecade)="updateCurrDecade($event)"
 ></app-decades>
 
-<ul class="movies" *ngIf="filteredMovies.length">
-  <li *ngFor="let movie of filteredMovies" class="grid grid-bleed">
+<ul class="movies" *ngIf="movies$ | async as movies; else loadingMovies">
+  <li *ngFor="let movie of movies | filterByDecade: currDecade" class="grid grid-bleed">
     <div class="image col-3"><img [src]="movie.Poster" /></div>
     <div class="content col-9 col-grid">
       <div class="title">{{ movie.Title }}</div>
@@ -26,3 +26,4 @@
     </div>
   </li>
 </ul>
+<ng-template #loadingMovies>Loading movies...</ng-template>

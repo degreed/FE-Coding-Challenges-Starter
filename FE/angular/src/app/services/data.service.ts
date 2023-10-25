@@ -1,80 +1,31 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, isDevMode } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { forkJoin, Observable, of, throwError } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, shareReplay } from 'rxjs/operators';
 
-interface SearchResults {
-  Response: string;
-  Search: Movie[];
-  totalResults: string;
-}
-
-interface Movie {
-  imdbID: string;
-  Poster: string;
-  Title: string;
-  Type: string;
-  Year: string | number;
-}
-
-interface MovieDetails extends Movie {
-  Actors: string;
-  Director: string;
-  Genre: string;
-  Plot: string;
-  Rated: string;
-  Released: string;
-  Runtime: string;
-  Writer: string;
-}
-
-export interface MovieComplete extends MovieDetails {
-  Year: number;
-}
-
-export interface MovieData {
-  Decades: number[];
-  Search: MovieComplete[];
-}
+import APP_CONSTANTS from '../constants';
+import { Movie, MovieComplete, MovieData, MovieDetails, SearchResults } from '../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
   private decades: number[] = [];
-  private posterUrl = 'https://m.media-amazon.com/images/M/';
-  private replacePosterUrl = '/assets/images/';
-  private serviceUrl = 'https://www.omdbapi.com/?apikey=f59b2e4b&';
   private storedMovies: MovieData = { Search: [], Decades: [] };
 
   constructor(private http: HttpClient) {}
 
-  public getFilteredMovies(movies: MovieComplete[], decade?: number): MovieComplete[] {
-    if (!decade) {
-      return movies;
-    }
-
-    const decadeLimit = decade + 10;
-    return movies.filter((movie) => movie.Year >= decade && movie.Year < decadeLimit);
-  }
-
-  public getMovie(id: string): Observable<MovieComplete> {
-    return this.http.get<MovieDetails>(`${this.serviceUrl}i=${id}`).pipe(
-      map(({ Actors, Director, Genre, imdbID, Plot, Poster, Rated, Released, Runtime, Title, Type, Writer, Year }) => ({
-        Actors,
-        Director,
-        Genre,
-        imdbID,
-        Plot,
-        Poster: Poster.replace(this.posterUrl, this.replacePosterUrl),
-        Rated,
-        Released,
-        Runtime,
-        Title,
-        Type,
-        Writer,
-        Year: parseInt(Year as string)
-      }))
+  getMovie(id: string): Observable<MovieComplete> {
+    return this.http.get<MovieDetails>(`${APP_CONSTANTS.serviceUrl}i=${id}`).pipe(
+      map((details: MovieDetails) => ({
+        ...details,
+        Year: parseInt(details.Year as string),
+        Poster: details.Poster.replace(APP_CONSTANTS.posterUrl, APP_CONSTANTS.replacePosterUrl)
+      })),
+      catchError(error => {
+        console.error('HTTP request error:', error);
+        return throwError(error);
+      })
     );
   }
 
@@ -83,27 +34,41 @@ export class DataService {
       return of(this.storedMovies);
     }
 
-    return this.http.get<SearchResults>(`${this.serviceUrl}s=Batman&type=movie`).pipe(
-      mergeMap(({ Search }) =>
-        forkJoin(
-          Search.map(({ imdbID, Year }) => {
-            // add decade to decades
-            const decade = Math.ceil(parseInt(Year as string) / 10) * 10 - 10;
-            if (this.decades.indexOf(decade) < 0) {
-              this.decades.push(decade);
-            }
+    return this.http.get<SearchResults>(`${APP_CONSTANTS.serviceUrl}s=Batman&type=movie`).pipe(
+      mergeMap(({ Search }) => {
+        const imdbIDs = Search.map(({ imdbID }) => imdbID);
+        return this.fetchMoviesDetails(imdbIDs).pipe(
+          map((movies) => {
+            const decadesSet = new Set<number>();
 
-            return this.getMovie(imdbID);
+            // Calculate decades and eliminate duplicates
+            movies.forEach((movie: Movie) => {
+              const decade = Math.ceil(parseInt(movie.Year.toString(), 10) / 10) * 10 - 10;
+              decadesSet.add(decade);
+            });
+
+            // Sort the decades
+            this.decades = Array.from(decadesSet).sort((a, b) => a - b);
+
+            // Sort movies by year
+            const sortedMovies = movies.sort((a, b) => parseInt(a.Year.toString(), 10) - parseInt(b.Year.toString(), 10));
+
+            this.storedMovies = { Search: sortedMovies, Decades: this.decades };
+            return this.storedMovies;
           })
-        )
-      ),
-      map((Search) => {
-        Search = Search.sort(({ Year: year1 }: MovieComplete, { Year: year2 }: MovieComplete) => year1 - year2);
-        this.decades.sort((a, b) => a - b);
-        this.storedMovies = { Search, Decades: this.decades };
+        );
+      }),
+      catchError((error) => {
+        console.error('HTTP request error:', error);
+        return throwError(error); // Rethrow the error
+      }),
+      shareReplay(1) // Cache the result to avoid making the same HTTP request multiple times
+    );
+  }
 
-        return this.storedMovies;
-      })
+  private fetchMoviesDetails(imdbIDs: string[]): Observable<MovieComplete[]> {
+    return forkJoin(
+      imdbIDs.map((imdbID) => this.getMovie(imdbID))
     );
   }
 }

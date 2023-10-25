@@ -2,50 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { mockProvider, SpectatorService } from '@ngneat/spectator';
 import { createServiceFactory } from '@ngneat/spectator/jest';
 import { of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 import { DataService } from './data.service';
+
+import { mockMovies } from '../mockData';
+import APP_CONSTANTS from '../constants';
 
 const mockGet = jest.fn().mockReturnValue(of([]));
 const mockHttpClient = mockProvider(HttpClient, {
   get: mockGet
 });
 
-const serviceUrl = 'https://www.omdbapi.com/?apikey=f59b2e4b&';
-const mockDecades = [2000, 2010];
-const mockMovies = [
-  {
-    Title: 'Mock Movie',
-    Year: 2000,
-    Rated: 'G',
-    Released: '01 Jan 2000',
-    Runtime: '90 min',
-    Genre: 'Mock Genre',
-    Director: 'Director McMock',
-    Writer: 'Writer Mock, Writer Mockerson',
-    Actors: 'Actor McMock, Actor Mockerson',
-    Plot: 'Mock movie plot summary.',
-    Poster:
-      'https://m.media-amazon.com/images/M/MV5BOTY4YjI2N2MtYmFlMC00ZjcyLTg3YjEtMDQyM2ZjYzQ5YWFkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg',
-    imdbID: 'tt123',
-    Type: 'movie'
-  },
-  {
-    Title: 'Mock Movie 2',
-    Year: 2011,
-    Rated: 'G',
-    Released: '01 Jan 2011',
-    Runtime: '90 min',
-    Genre: 'Mock Genre',
-    Director: 'Director McMock',
-    Writer: 'Writer Mock, Writer Mockerson',
-    Actors: 'Actor McMock, Actor Mockerson',
-    Plot: 'Mock movie plot summary.',
-    Poster:
-      'https://m.media-amazon.com/images/M/MV5BOTY4YjI2N2MtYmFlMC00ZjcyLTg3YjEtMDQyM2ZjYzQ5YWFkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg',
-    imdbID: 'tt123',
-    Type: 'movie'
-  }
-];
+const serviceUrl = APP_CONSTANTS.serviceUrl;
 
 describe('DataService', () => {
   let spectator: SpectatorService<DataService>;
@@ -66,19 +33,6 @@ describe('DataService', () => {
 
   test('should create the service', () => {
     expect(service).toBeTruthy();
-  });
-
-  describe('getFilteredMovies', () => {
-    describe('WHEN decade is undefined', () => {
-      test('should return all movies', () => {
-        expect(service.getFilteredMovies(mockMovies)).toEqual(mockMovies);
-      });
-    });
-    describe('WHEN decade is defined', () => {
-      test('should return only movies from that decade', () => {
-        expect(service.getFilteredMovies(mockMovies, 2010)).toEqual([mockMovies[1]]);
-      });
-    });
   });
 
   describe('getMovie', () => {

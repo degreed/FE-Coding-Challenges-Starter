@@ -1,41 +1,29 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { tap } from 'rxjs';
-import { DataService, MovieComplete } from '../../services/data.service';
+import { Component, OnInit } from '@angular/core';
+import { tap, Observable, map } from 'rxjs';
+import { DataService } from '../../services/data.service';
+import { MovieComplete } from '../../models';
 
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html'
 })
-export class MoviesComponent implements OnDestroy, OnInit {
+export class MoviesComponent implements OnInit {
   public currDecade: number | undefined;
   public decades: number[] = [];
-  public filteredMovies: MovieComplete[] = [];
-  public movies: MovieComplete[] = [];
-  private moviesSubscription: any;
+  public movies$: Observable<MovieComplete[]> | null = null;
 
   constructor(private dataService: DataService) {}
 
   public ngOnInit(): void {
-    this.moviesSubscription = this.dataService.getMovies().pipe(
-      tap((data) => {
-        this.decades = data.Decades;
-        this.movies = data.Search;
-        this.displayMovies();
-      })
+    this.movies$ = this.dataService.getMovies().pipe(
+      map(movieData => {
+        this.decades = movieData.Decades ?? [];
+        return movieData.Search ?? null;
+      }),
     );
   }
 
-  public ngOnDestroy(): void {
-    this.moviesSubscription.unsubscribe();
-  }
-
-  public displayMovies(decade?: number): void {
-    if (!this.movies?.length) {
-      this.filteredMovies = [];
-      return;
-    }
-
+  public updateCurrDecade(decade?: number): void {
     this.currDecade = decade;
-    this.filteredMovies = this.dataService.getFilteredMovies(this.movies, decade);
   }
 }

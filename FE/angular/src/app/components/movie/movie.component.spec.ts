@@ -1,6 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import { mockProvider, Spectator } from '@ngneat/spectator';
-import { createComponentFactory } from '@ngneat/spectator/jest';
+import { mockProvider, Spectator, createComponentFactory, MockProvider } from '@ngneat/spectator';
 import { DataService } from '../../services/data.service';
 import { MovieComponent } from './movie.component';
 
@@ -14,13 +13,12 @@ const mockDataService = mockProvider(DataService, {
 describe('MovieComponent', () => {
   let spectator: Spectator<MovieComponent>;
   let component: MovieComponent;
+
   const createComponent = createComponentFactory({
     component: MovieComponent,
     imports: [],
-    declarations: [],
     providers: [mockActivatedRoute, mockDataService],
     shallow: true,
-    detectChanges: false
   });
 
   beforeEach(() => {
@@ -29,7 +27,7 @@ describe('MovieComponent', () => {
   });
 
   test('should create the component', () => {
-    component.ngOnInit();
     expect(component).toBeTruthy();
   });
+
 });
