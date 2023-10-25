@@ -10,7 +10,6 @@ import { Movie, MovieComplete, MovieData, MovieDetails, SearchResults } from '..
   providedIn: 'root'
 })
 export class DataService {
-  private decades: number[] = [];
   private storedMovies: MovieData = { Search: [], Decades: [] };
 
   constructor(private http: HttpClient) {}
@@ -48,12 +47,12 @@ export class DataService {
             });
 
             // Sort the decades
-            this.decades = Array.from(decadesSet).sort((a, b) => a - b);
+            const decades = Array.from(decadesSet).sort((a, b) => a - b);
 
             // Sort movies by year
             const sortedMovies = movies.sort((a, b) => parseInt(a.Year.toString(), 10) - parseInt(b.Year.toString(), 10));
 
-            this.storedMovies = { Search: sortedMovies, Decades: this.decades };
+            this.storedMovies = { Search: sortedMovies, Decades: decades };
             return this.storedMovies;
           })
         );

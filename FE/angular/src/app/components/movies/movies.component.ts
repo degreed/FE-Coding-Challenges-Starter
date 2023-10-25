@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { tap, Observable, map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { DataService } from '../../services/data.service';
 import { MovieComplete } from '../../models';
+import { FilterByDecadePipe } from '../../pipes/filterByDecade.pipe';
 
 @Component({
   selector: 'app-movies',

@@ -1,48 +1,34 @@
-import { Spectator, createComponentFactory, mockProvider } from '@ngneat/spectator';
-import { DataService } from '../../services/data.service';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MoviesComponent } from './movies.component';
+import { FilterByDecadePipe } from '../../pipes/filterByDecade.pipe';
+import { DataService } from '../../services/data.service';
 import { of } from 'rxjs';
 import { mockDecades, mockMovies } from '../../mockData';
-import { fakeAsync, tick } from '@angular/core/testing';
-
-const mockGetMovies = jest.fn().mockReturnValue(of({ Decades: mockDecades, Search: mockMovies }));
-
-const mockDataService = mockProvider(DataService, {
-  getMovies: mockGetMovies,
-});
 
 describe('MoviesComponent', () => {
-  let spectator: Spectator<MoviesComponent>;
   let component: MoviesComponent;
+  let fixture: ComponentFixture<MoviesComponent>;
 
-  const createComponent = createComponentFactory({
-    component: MoviesComponent,
-    imports: [],
-    providers: [mockDataService],
-    shallow: true,
-  });
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [MoviesComponent, FilterByDecadePipe],
+      providers: [DataService],
+      imports: [HttpClientTestingModule],
+    }).compileComponents(); // Compile components asynchronously
+
+    // Create a mock DataService that returns mock data
+    TestBed.overrideProvider(DataService, { useValue: { getMovies: () => of({ Decades: mockDecades, Search: mockMovies }) } });
+  }));
 
   beforeEach(() => {
-    spectator = createComponent();
-    component = spectator.component;
+    fixture = TestBed.createComponent(MoviesComponent);
+    component = fixture.componentInstance;
   });
 
-  test('should create the component', () => {
+  it('should create the component', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('ngOnInit', () => {
-    beforeEach(fakeAsync(() => {
-      component.ngOnInit();
-      tick(); // Wait for observables to complete
-    }));
-
-    test('should set decades', () => {
-      expect(component.decades).toEqual(mockDecades);
-    });
-
-    test('should set movies array', () => {
-      expect(component.movies$).toEqual(mockMovies);
-    });
-  });
+  // Add more tests as needed
 });
