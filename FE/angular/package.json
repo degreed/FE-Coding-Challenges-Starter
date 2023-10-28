@@ -2,7 +2,7 @@
   "name": "fe-coding-challenge",
   "version": "1.0.0",
   "description": "Frontend coding challenge for Degreed.",
-  "main": "index.ts",
+  "main": "main.ts",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

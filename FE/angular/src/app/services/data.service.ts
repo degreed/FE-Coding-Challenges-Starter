@@ -49,15 +49,6 @@ export class DataService {
 
   constructor(private http: HttpClient) {}
 
-  public getFilteredMovies(movies: MovieComplete[], decade?: number): MovieComplete[] {
-    if (!decade) {
-      return movies;
-    }
-
-    const decadeLimit = decade + 10;
-    return movies.filter((movie) => movie.Year >= decade && movie.Year < decadeLimit);
-  }
-
   public getMovie(id: string): Observable<MovieComplete> {
     return this.http.get<MovieDetails>(`${this.serviceUrl}i=${id}`).pipe(
       map(({ Actors, Director, Genre, imdbID, Plot, Poster, Rated, Released, Runtime, Title, Type, Writer, Year }) => ({

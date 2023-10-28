@@ -1,9 +1,16 @@
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
-import { of } from 'rxjs';
 import { mockProvider, Spectator } from '@ngneat/spectator';
 import { createComponentFactory } from '@ngneat/spectator/jest';
+import { of } from 'rxjs';
 import { DataService } from '../../services/data.service';
 import { MovieComponent } from './movie.component';
+
+const mockActivatedRoute = mockProvider(ActivatedRoute, {
+  params: of(convertToParamMap({ id: '123' })), // Provide a sample parameter
+});
+const mockDataService = mockProvider(DataService, {
+  getMovie: jest.fn()
+});
 
 describe('MovieComponent', () => {
   let spectator: Spectator<MovieComponent>;
@@ -12,15 +19,7 @@ describe('MovieComponent', () => {
     component: MovieComponent,
     imports: [],
     declarations: [],
-    providers: [
-      mockProvider(DataService), // provide mockDataService as mockProvider
-      {
-        provide: ActivatedRoute,
-        useValue: {
-          params: of(convertToParamMap({ id: '123' })) // provide an observable with params
-        }
-      }
-    ],
+    providers: [mockActivatedRoute, mockDataService],
     shallow: true,
     detectChanges: false
   });

@@ -11,7 +11,8 @@ import { NavigationService } from './services/navigation.service';
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
 import { DataService } from './services/data.service';
 import { CardComponent } from './components/shared/card/card.component';
-
+import { DecadeFilterPipe } from './pipes/decadeFilter.pipe';
+import { EllipsisDirective } from './directives/ellipsis.directive';
 @NgModule({
   declarations: [
     MoviesComponent,
@@ -20,7 +21,9 @@ import { CardComponent } from './components/shared/card/card.component';
     GoBackComponent,
     AppComponent,
     DecadesComponent,
-    CardComponent
+    CardComponent,
+    DecadeFilterPipe,
+    EllipsisDirective
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [DataService, NavigationService],

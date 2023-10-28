@@ -1,0 +1,11 @@
+.movie,
+.movies {
+  > li {
+    max-width: 800px;
+    margin-bottom: 28px;
+    padding: $mainFontSize;
+    background: $paleGray;
+    border-radius: $radius;
+    border: 2px solid $darkerGray;
+  }
+}

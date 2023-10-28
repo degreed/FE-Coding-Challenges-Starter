@@ -41,10 +41,8 @@ const mockMovies = [
 ];
 
 const mockGetMovies = jest.fn().mockReturnValue(of({ Decades: mockDecades, Search: mockMovies }));
-const mockGetFilteredMovies = jest.fn().mockReturnValue([mockMovies[0]]);
 const mockDataService = mockProvider(DataService, {
-  getMovies: mockGetMovies,
-  getFilteredMovies: mockGetFilteredMovies
+  getMovies: mockGetMovies
 });
 
 describe('MovieComponent', () => {
@@ -88,9 +86,6 @@ describe('MovieComponent', () => {
     describe('WHEN movies are defined', () => {
       beforeEach(() => {
         component.displayMovies();
-      });
-      test('should set filteredMovies', () => {
-        expect(component.filteredMovies).toEqual([mockMovies[0]]);
       });
       describe('AND a decade is passed in', () => {
         beforeEach(() => {

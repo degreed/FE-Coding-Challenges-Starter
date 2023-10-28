@@ -1,13 +1,8 @@
 @import 'abstracts/variables';
 
-li.card{
-  max-width: 800px;
-  margin-bottom: 28px;
-  padding: $mainFontSize;
-  background: $paleGray;
-  border-radius: $radius;
-  border: 2px solid $darkerGray;
 
+.card-container{
+  display: flex;
   .image {
     padding-right: 30px;
 
@@ -26,9 +21,6 @@ li.card{
       font-weight: $fontWeightBold;
       height: $wideSpace;
       border-bottom: 1px solid $darkGray;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
     }
     .details,
     .metadata {

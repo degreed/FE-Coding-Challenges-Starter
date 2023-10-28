@@ -3,7 +3,6 @@ import { DataService, MovieComplete } from '../../services/data.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NavigationService } from '../../services/navigation.service';
-
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html'
@@ -43,7 +42,6 @@ export class MoviesComponent implements OnInit, OnDestroy {
       return;
     }
     this.currDecade = decade;
-    this.filteredMovies = this.dataService.getFilteredMovies(this.movies, decade);
   }
 
   public navigateTo(id: string) {

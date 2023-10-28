@@ -4,6 +4,8 @@
   [currDecade]="currDecade"
   (updateDecade)="displayMovies($event)"
 ></app-decades>
-<ul class="movies" *ngIf="filteredMovies.length">
-  <app-card *ngFor="let movie of filteredMovies" [movie]="movie" buttonText="View Details" (buttonClick)="navigateTo($event)"></app-card>
+<ul class="movies" *ngIf="movies.length">
+  <li class="card grid grid-bleed" *ngFor="let movie of movies | decadeFilter: currDecade">
+    <app-card  [movie]="movie" buttonText="View Details" (buttonClick)="navigateTo($event)"></app-card>
+  </li>
 </ul>

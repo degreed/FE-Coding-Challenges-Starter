@@ -1,5 +1,7 @@
 <app-go-back></app-go-back>
 
 <ul *ngIf="movie" class="movie">
-  <app-card [movie]="movie" buttonText="View on IMDB" (buttonClick)="navigateTo($event)"></app-card>
+  <li class="card grid grid-bleed">
+    <app-card [movie]="movie" buttonText="View on IMDB" (buttonClick)="navigateTo($event)"></app-card>
+  </li>
 </ul>

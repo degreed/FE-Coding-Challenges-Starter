@@ -1,7 +1,7 @@
-<li class="card grid grid-bleed">
+<div class="card-container">
   <div class="image col-3"><img [src]="movie.Poster" alt="Image not available" /></div>
   <div class="content col-9 col-grid">
-    <div class="title" [title]="movie.Title">{{ movie.Title }}</div>
+    <div class="title" [title]="movie.Title" appEllipsis>{{ movie.Title }}</div>
     <ul class="metadata">
       <li class="rated">
         <div>{{ movie.Rated }}</div>
@@ -16,4 +16,4 @@
       <button (click)="navigateTo(movie.imdbID)" class="detail">{{ buttonText }}</button>
     </div>
   </div>
-</li>
+</div>
