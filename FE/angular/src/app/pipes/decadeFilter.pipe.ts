@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { MovieComplete } from '../services/data.service';
+import { MovieComplete } from '../models';
 
 @Pipe({
   name: 'decadeFilter'

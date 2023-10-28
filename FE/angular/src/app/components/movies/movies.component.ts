@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DataService, MovieComplete } from '../../services/data.service';
+import { DataService } from '../../services/data.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NavigationService } from '../../services/navigation.service';
+import { MovieComplete } from 'src/app/models';
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html'

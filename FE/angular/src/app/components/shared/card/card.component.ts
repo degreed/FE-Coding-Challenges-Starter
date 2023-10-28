@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MovieComplete } from 'src/app/services/data.service';
+import { MovieComplete } from 'src/app/models';
 
 @Component({
   selector: 'app-card',

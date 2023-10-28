@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService, MovieComplete } from '../../services/data.service';
+import { DataService } from '../../services/data.service';
 import { switchMap, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { MovieComplete } from 'src/app/models';
 const imdbBaseLink = 'https://www.imdb.com/title/';
 @Component({
   selector: 'app-movie',

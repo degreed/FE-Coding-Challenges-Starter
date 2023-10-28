@@ -2,62 +2,26 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, Observable, of } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
-
-interface SearchResults {
-  Response: string;
-  Search: Movie[];
-  totalResults: string;
-}
-
-export interface Movie {
-  imdbID: string;
-  Poster: string;
-  Title: string;
-  Type: string;
-  Year: string | number;
-}
-
-interface MovieDetails extends Movie {
-  Actors: string;
-  Director: string;
-  Genre: string;
-  Plot: string;
-  Rated: string;
-  Released: string;
-  Runtime: string;
-  Writer: string;
-}
-
-export interface MovieComplete extends MovieDetails {
-  Year: number;
-}
-
-export interface MovieData {
-  Decades: number[];
-  Search: MovieComplete[];
-}
-
+import { MovieComplete, MovieData, MovieDetails, SearchResults } from '../models';
+import { API_URL_CONST } from '../constants';
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
   private decades: number[] = [];
-  private posterUrl = 'https://m.media-amazon.com/images/M/';
-  private replacePosterUrl = '/assets/images/';
-  private serviceUrl = 'https://www.omdbapi.com/?apikey=f59b2e4b&';
   private storedMovies: MovieData = { Search: [], Decades: [] };
 
   constructor(private http: HttpClient) {}
 
   public getMovie(id: string): Observable<MovieComplete> {
-    return this.http.get<MovieDetails>(`${this.serviceUrl}i=${id}`).pipe(
+    return this.http.get<MovieDetails>(`${API_URL_CONST.serviceUrl}i=${id}`).pipe(
       map(({ Actors, Director, Genre, imdbID, Plot, Poster, Rated, Released, Runtime, Title, Type, Writer, Year }) => ({
         Actors,
         Director,
         Genre,
         imdbID,
         Plot,
-        Poster: Poster.replace(this.posterUrl, this.replacePosterUrl),
+        Poster: Poster.replace(API_URL_CONST.posterUrl, API_URL_CONST.replacePosterUrl),
         Rated,
         Released,
         Runtime,
@@ -74,7 +38,7 @@ export class DataService {
       return of(this.storedMovies);
     }
 
-    return this.http.get<SearchResults>(`${this.serviceUrl}s=Batman&type=movie`).pipe(
+    return this.http.get<SearchResults>(`${API_URL_CONST.serviceUrl}s=Batman&type=movie`).pipe(
       mergeMap(({ Search }) =>
         forkJoin(
           Search.map(({ imdbID, Year }) => {
