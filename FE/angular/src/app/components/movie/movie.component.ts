@@ -1,25 +1,34 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { tap } from 'rxjs';
 import { DataService, MovieComplete } from '../../services/data.service';
-
+import { switchMap, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+const imdbBaseLink = 'https://www.imdb.com/title/';
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html'
 })
-export class MovieComponent implements OnDestroy, OnInit {
+export class MovieComponent implements OnInit, OnDestroy {
   public movie: MovieComplete;
-  public movieId = '';
-  private movieSubscription: any;
+  private destroy$ = new Subject<void>();
 
   constructor(private activatedRoute: ActivatedRoute, private dataService: DataService) {}
 
-  public ngOnInit() {
-    this.activatedRoute.params.pipe(tap(({ id }) => (this.movieId = id)));
-    this.movieSubscription = this.dataService.getMovie(this.movieId).pipe(tap((data) => (this.movie = data)));
+  ngOnInit(): void {
+    this.activatedRoute.params
+      .pipe(
+        takeUntil(this.destroy$),
+        switchMap(({ id }) => this.dataService.getMovie(id as string))
+      )
+      .subscribe((movie) => (this.movie = movie));
   }
 
-  public ngOnDestroy(): void {
-    this.movieSubscription.unsubscribe();
+  public navigateTo(id: string) {
+    window.open(imdbBaseLink + id, 'imdbWindow');
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

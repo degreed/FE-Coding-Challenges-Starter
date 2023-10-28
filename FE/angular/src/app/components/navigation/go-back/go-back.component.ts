@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { BaseLink } from '../../sidebar/sidebar.component';
-import { NavigationService } from '../navigation.service';
+import { BaseLink } from '../../shared/sidebar/sidebar.component';
+import { NavigationService } from '../../../services/navigation.service';
 
 @Component({
   selector: 'app-go-back',
