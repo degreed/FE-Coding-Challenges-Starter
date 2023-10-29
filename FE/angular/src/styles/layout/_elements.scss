@@ -30,3 +30,13 @@ button {
   display: block;
   margin: auto;
 }
+/* Focus style for a11y */
+@mixin focus {
+  &:focus {
+    outline: 2px solid #000000; 
+  }
+}
+
+a, button, [role="button"], input[type="button"], input[type="submit"] {
+  @include focus;
+}

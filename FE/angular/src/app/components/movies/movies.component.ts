@@ -12,6 +12,9 @@ export class MoviesComponent implements OnDestroy, OnInit {
   public filteredMovies: MovieComplete[] = [];
   public movies: MovieComplete[] = [];
   private moviesSubscription: any;
+  public generateAltText(movie: MovieComplete): string {
+    return `Movie Poster: ${movie.Title}`;
+  } //generates the alt text
 
   constructor(private dataService: DataService) {}
 
@@ -20,11 +23,12 @@ export class MoviesComponent implements OnDestroy, OnInit {
       tap((data) => {
         this.decades = data.Decades;
         this.movies = data.Search;
-        this.displayMovies();
       })
-    );
+    ).subscribe(() => {
+      this.displayMovies();
+    });
   }
-
+  
   public ngOnDestroy(): void {
     this.moviesSubscription.unsubscribe();
   }

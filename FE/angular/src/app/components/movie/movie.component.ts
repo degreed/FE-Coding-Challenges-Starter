@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { tap } from 'rxjs';
 import { DataService, MovieComplete } from '../../services/data.service';
 
 @Component({
@@ -10,16 +9,26 @@ import { DataService, MovieComplete } from '../../services/data.service';
 export class MovieComponent implements OnDestroy, OnInit {
   public movie: MovieComplete;
   public movieId = '';
-  private movieSubscription: any;
 
   constructor(private activatedRoute: ActivatedRoute, private dataService: DataService) {}
 
   public ngOnInit() {
-    this.activatedRoute.params.pipe(tap(({ id }) => (this.movieId = id)));
-    this.movieSubscription = this.dataService.getMovie(this.movieId).pipe(tap((data) => (this.movie = data)));
+    console.log('MoviesComponent initialized');
+    this.activatedRoute.params.subscribe((params) => {
+      if (params.id) {
+        this.movieId = params.id;
+        this.dataService.getMovie(this.movieId).subscribe((data) => {
+          this.movie = data;
+          console.log(data); // Log the data
+        });
+      }
+    });
   }
-
+  public generateAltText(movie: MovieComplete): string {
+    return `Movie Poster: ${movie.Title}`; 
+  }
+  
   public ngOnDestroy(): void {
-    this.movieSubscription.unsubscribe();
+    // No need to unsubscribe because the component will be destroyed automatically.
   }
 }
