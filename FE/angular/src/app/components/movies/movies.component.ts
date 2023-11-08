@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { tap } from 'rxjs';
-import {  MovieComplete } from '../../services/data.service';
 import { MoviesDataAccessService } from './data-access/data-access.service';
+import { MovieComplete } from '../movie/movie.models';
 
 @Component({
   selector: 'app-movies',
