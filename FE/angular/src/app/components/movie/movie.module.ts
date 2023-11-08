@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MovieRoutingModule } from './movie-routing.module';
 import { MovieComponent } from './movie.component';
 import { GoBackModule } from '../navigation/go-back/go-back.module';
-import { GoImdbModule } from '../navigation/go-imdb/go-imdb.module';
+import { MovieRowModule } from '../movie-row/movie-row.module';
 
 
 @NgModule({
@@ -14,7 +14,7 @@ import { GoImdbModule } from '../navigation/go-imdb/go-imdb.module';
   imports: [
     CommonModule,
     GoBackModule,
-    GoImdbModule,
+    MovieRowModule,
     MovieRoutingModule,
   ],
   exports: [
