@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { forkJoin, Observable, of } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
-import { HttpService } from 'src/app/services/http.service';
 import { MovieDataAccessService } from '../../movie/data-access/data-access.service';
 import { MovieComplete } from '../../movie/movie.models';
 import { MovieData, SearchResults } from '../movies.models';
-import { Constants } from 'src/app/constants/constants';
+import { Constants } from '../../../constants/constants';
+import { HttpService } from '../../../services/http.service';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { Constants } from 'src/app/constants/constants';
-import { HttpService } from 'src/app/services/http.service';
+import { Constants } from '../../../constants/constants';
+import { HttpService } from '../../../services/http.service';
 import { MovieComplete, MovieDetails } from '../movie.models';
 
 @Injectable({
