@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, isDevMode } from '@angular/core';
 import { forkJoin, Observable, of, throwError } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
+import { HttpService } from './http.service';
 
 interface SearchResults {
   Response: string;
@@ -47,7 +48,7 @@ export class DataService {
   private serviceUrl = 'https://www.omdbapi.com/?apikey=f59b2e4b&';
   private storedMovies: MovieData = { Search: [], Decades: [] };
 
-  constructor(private http: HttpClient) {}
+  constructor(private httpService: HttpService) {}
 
   public getFilteredMovies(movies: MovieComplete[], decade?: number): MovieComplete[] {
     if (!decade) {
@@ -59,7 +60,7 @@ export class DataService {
   }
 
   public getMovie(id: string): Observable<MovieComplete> {
-    return this.http.get<MovieDetails>(`${this.serviceUrl}i=${id}`).pipe(
+    return this.httpService.get<MovieDetails>(`${this.serviceUrl}i=${id}`).pipe(
       map(({ Actors, Director, Genre, imdbID, Plot, Poster, Rated, Released, Runtime, Title, Type, Writer, Year }) => ({
         Actors,
         Director,
@@ -83,7 +84,7 @@ export class DataService {
       return of(this.storedMovies);
     }
 
-    return this.http.get<SearchResults>(`${this.serviceUrl}s=Batman&type=movie`).pipe(
+    return this.httpService.get<SearchResults>(`${this.serviceUrl}s=Batman&type=movie`).pipe(
       mergeMap(({ Search }) =>
         forkJoin(
           Search.map(({ imdbID, Year }) => {
