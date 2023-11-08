@@ -4,6 +4,7 @@
     (click)="onClick(link, index)"
     class="nav"
     [class.active]="link.isActive"
+    [attr.aria-label]="link.label"
   >
     {{ link.label }}
   </button>
