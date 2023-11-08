@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs';
 import { DataAccessService } from './data-access/data-access.service'
-import { MovieComplete } from '../../services/data.service';
+import { MovieComplete } from './movie.models';
 
 @Component({
   selector: 'app-movie',
