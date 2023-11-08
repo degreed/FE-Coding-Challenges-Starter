@@ -7,7 +7,7 @@ import { MovieComplete, MovieDetails } from '../movie.models';
 @Injectable({
   providedIn: 'root'
 })
-export class DataAccessService {
+export class MovieDataAccessService {
   
 
   constructor(private http: HttpService) { }
