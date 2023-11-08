@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DecadesComponent } from './decades.component';
+import { SidebarModule } from '../../sidebar/sidebar.module';
 
 
 
@@ -9,7 +10,8 @@ import { DecadesComponent } from './decades.component';
     DecadesComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SidebarModule
   ],
   exports: [
     DecadesComponent

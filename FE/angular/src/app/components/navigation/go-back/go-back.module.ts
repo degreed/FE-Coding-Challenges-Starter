@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GoBackComponent } from './go-back.component';
+import { SidebarModule } from '../../sidebar/sidebar.module';
 
 
 
@@ -9,7 +10,8 @@ import { GoBackComponent } from './go-back.component';
     GoBackComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SidebarModule
   ],
   exports: [
     GoBackComponent
