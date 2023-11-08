@@ -6,11 +6,15 @@ import { MoviesComponent } from './components/movies/movies.component';
 const routes: Routes = [
   {
     path: '',
-    component: MoviesComponent
+    loadChildren: () => import(
+      './components/movies/movies.module'
+    ).then((x) => x.MoviesModule)
   },
   {
-    path: 'movie/:id',
-    component: MovieComponent
+    path: 'movie',
+    loadChildren: () => import(
+      './components/movie/movie.module'
+    ).then((x) => x.MovieModule)
   }
 ];
 
@@ -18,4 +22,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
