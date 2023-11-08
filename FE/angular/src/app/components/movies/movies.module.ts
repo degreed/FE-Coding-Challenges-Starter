@@ -13,9 +13,9 @@ import { GoDetailsModule } from '../navigation/go-details/go-details.module';
   ],
   imports: [
     CommonModule,
-    MoviesRoutingModule,
     DecadesModule,
-    GoDetailsModule
+    GoDetailsModule,
+    MoviesRoutingModule,
   ],
   exports: [
     MoviesComponent
