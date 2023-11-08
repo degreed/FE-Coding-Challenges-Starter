@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationService } from './components/navigation/navigation.service';
 import { DataService } from './services/data.service';
+import { MovieModule } from './components/movie/movie.module';
+import { MoviesModule } from './components/movies/movies.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, MovieModule, MoviesModule],
   providers: [DataService, NavigationService],
   bootstrap: [AppComponent]
 })
