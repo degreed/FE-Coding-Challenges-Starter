@@ -22,11 +22,13 @@ export class MoviesComponent implements OnDestroy, OnInit {
         this.movies = data.Search;
         this.displayMovies();
       })
-    );
+    ).subscribe();
   }
 
   public ngOnDestroy(): void {
-    this.moviesSubscription.unsubscribe();
+    if(this.moviesSubscription){
+      this.moviesSubscription.unsubscribe();
+    }
   }
 
   public displayMovies(decade?: number): void {

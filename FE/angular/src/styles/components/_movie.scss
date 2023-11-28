@@ -4,11 +4,11 @@
     max-width: 800px;
     margin-bottom: 28px;
     padding: $mainFontSize;
-    flex-direction: column;
+    flex-direction: row;
     background: $paleGray;
     border-radius: $radius;
     border: 2px solid $darkerGray;
-
+    
     .image {
       padding-right: 30px;
 
@@ -20,7 +20,7 @@
 
     .content {
       color: $darkerGray;
-
+     
       .title {
         font-family: $fontStackAccent;
         font-size: $headerFontSize;

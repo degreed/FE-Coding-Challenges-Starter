@@ -1,11 +1,12 @@
 import { ActivatedRoute } from '@angular/router';
+import {of} from 'rxjs';
 import { mockProvider, Spectator } from '@ngneat/spectator';
 import { createComponentFactory } from '@ngneat/spectator/jest';
 import { DataService } from '../../services/data.service';
 import { MovieComponent } from './movie.component';
 
 const mockActivatedRoute = mockProvider(ActivatedRoute, {
-  params: jest.fn()
+  params: of({ id: 'tt1877830' })
 });
 const mockDataService = mockProvider(DataService, {
   getMovie: jest.fn()
