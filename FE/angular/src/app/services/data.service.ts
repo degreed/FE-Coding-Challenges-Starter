@@ -37,9 +37,7 @@ export interface MovieData {
   Search: MovieComplete[];
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class DataService {
   private decades: number[] = [];
   private posterUrl = 'https://m.media-amazon.com/images/M/';
