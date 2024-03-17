@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { tap } from 'rxjs';
-import { DataService, MovieComplete } from '../../services/data.service';
+import { Subscription, tap } from 'rxjs';
+import { DataService } from '../../services/data.service';
+import { MovieComplete } from 'src/app/models/data.model';
 
 @Component({
   selector: 'app-movies',
@@ -11,18 +12,18 @@ export class MoviesComponent implements OnDestroy, OnInit {
   public decades: number[] = [];
   public filteredMovies: MovieComplete[] = [];
   public movies: MovieComplete[] = [];
-  private moviesSubscription: any;
+  private moviesSubscription: Subscription;
 
   constructor(private dataService: DataService) {}
 
   public ngOnInit(): void {
-    this.moviesSubscription = this.dataService.getMovies().pipe(
-      tap((data) => {
+    this.moviesSubscription = this.dataService
+      .getMovies()
+      .subscribe((data) => {
         this.decades = data.Decades;
         this.movies = data.Search;
         this.displayMovies();
-      })
-    );
+      });
   }
 
   public ngOnDestroy(): void {
@@ -34,7 +35,6 @@ export class MoviesComponent implements OnDestroy, OnInit {
       this.filteredMovies = [];
       return;
     }
-
     this.currDecade = decade;
     this.filteredMovies = this.dataService.getFilteredMovies(this.movies, decade);
   }

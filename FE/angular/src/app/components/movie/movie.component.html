@@ -1,8 +1,10 @@
 <app-go-back></app-go-back>
 
-<ul *ngIf="movie" class="movie">
+<ul *ngIf="movie$ | async as movie" class="movie">
   <li class="grid grid-bleed">
-    <div class="image col-3"><img [src]="movie.Poster" /></div>
+    <div class="image col-3">
+      <img [src]="movie.Poster" [alt]="movie.Title + '-poster'" />
+    </div>
     <div class="content col-9 col-grid">
       <div class="title">{{ movie.Title }} ({{ movie.Year }})</div>
       <ul class="metadata">
@@ -36,3 +38,7 @@
     </div>
   </li>
 </ul>
+
+<div *ngIf="showError">
+  Please select a Movie
+</div>

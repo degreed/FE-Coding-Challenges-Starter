@@ -2,44 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, isDevMode } from '@angular/core';
 import { forkJoin, Observable, of, throwError } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
+import { MovieComplete, MovieData, MovieDetails, SearchResults } from '../models/data.model';
 
-interface SearchResults {
-  Response: string;
-  Search: Movie[];
-  totalResults: string;
-}
-
-interface Movie {
-  imdbID: string;
-  Poster: string;
-  Title: string;
-  Type: string;
-  Year: string | number;
-}
-
-interface MovieDetails extends Movie {
-  Actors: string;
-  Director: string;
-  Genre: string;
-  Plot: string;
-  Rated: string;
-  Released: string;
-  Runtime: string;
-  Writer: string;
-}
-
-export interface MovieComplete extends MovieDetails {
-  Year: number;
-}
-
-export interface MovieData {
-  Decades: number[];
-  Search: MovieComplete[];
-}
-
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class DataService {
   private decades: number[] = [];
   private posterUrl = 'https://m.media-amazon.com/images/M/';
