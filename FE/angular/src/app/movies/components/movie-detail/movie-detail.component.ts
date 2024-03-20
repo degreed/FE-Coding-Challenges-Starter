@@ -1,13 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { mergeMap, tap, Subscription } from 'rxjs';
+import { tap, Subscription, switchMap } from 'rxjs';
 import { DataService, MovieComplete } from '../../services/data.service';
 
 @Component({
   selector: 'app-movie',
-  templateUrl: './movie.component.html'
+  templateUrl: './movie-detail.component.html'
 })
-export class MovieComponent implements OnDestroy, OnInit {
+export class MovieDetailComponent implements OnDestroy, OnInit {
   public movie: MovieComplete;
   public movieId = '';
   private movieSubscription: Subscription;
@@ -20,7 +20,7 @@ export class MovieComponent implements OnDestroy, OnInit {
         tap(({ id }) => {
           this.movieId = id as string;
         }),
-        mergeMap(({ id }) => {
+        switchMap(({ id }) => {
           return this.dataService.getMovie(id as string);
         })
       )

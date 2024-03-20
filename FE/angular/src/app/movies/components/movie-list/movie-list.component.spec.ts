@@ -2,7 +2,7 @@ import { mockProvider, Spectator } from '@ngneat/spectator';
 import { createComponentFactory } from '@ngneat/spectator/jest';
 import { of } from 'rxjs';
 import { DataService } from '../../services/data.service';
-import { MoviesComponent } from './movies.component';
+import { MovieListComponent } from './movie-list.component';
 
 const mockDecades = [2000];
 const mockMovies = [
@@ -47,11 +47,11 @@ const mockDataService = mockProvider(DataService, {
   getFilteredMovies: mockGetFilteredMovies
 });
 
-describe('MovieComponent', () => {
-  let spectator: Spectator<MoviesComponent>;
-  let component: MoviesComponent;
+describe('MovieListComponent', () => {
+  let spectator: Spectator<MovieListComponent>;
+  let component: MovieListComponent;
   const createComponent = createComponentFactory({
-    component: MoviesComponent,
+    component: MovieListComponent,
     imports: [],
     declarations: [],
     providers: [mockDataService],

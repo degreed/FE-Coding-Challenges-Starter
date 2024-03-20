@@ -1,6 +1,6 @@
 import { mockProvider } from '@ngneat/spectator';
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
-import { NavigationService } from '../navigation.service';
+import { NavigationService } from '../../../services/navigation.service';
 import { GoImdbComponent, imdbBaseLink } from './go-imdb.component';
 
 let mockWindow: jest.SpyInstance;

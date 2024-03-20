@@ -1,6 +1,6 @@
 import { mockProvider } from '@ngneat/spectator';
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
-import { NavigationService } from '../navigation.service';
+import { NavigationService } from '../../../services/navigation.service';
 import { GoBackComponent } from './go-back.component';
 
 const mockGoTo = jest.fn();

@@ -4,9 +4,9 @@ import { DataService, MovieComplete } from '../../services/data.service';
 
 @Component({
   selector: 'app-movies',
-  templateUrl: './movies.component.html'
+  templateUrl: './movie-list.component.html'
 })
-export class MoviesComponent implements OnDestroy, OnInit {
+export class MovieListComponent implements OnDestroy, OnInit {
   public currDecade: number | undefined;
   public decades: number[] = [];
   public filteredMovies: MovieComplete[] = [];
