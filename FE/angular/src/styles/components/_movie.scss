@@ -47,14 +47,14 @@
         }
 
         .rated {
-          color: $darkGray;
+          color: $darkerGray;
           font-family: $fontStackRating;
           margin-left: 0;
 
           div {
             display: inline-block;
             padding: 5px 10px;
-            border: 1px solid $darkGray;
+            border: 1px solid $darkerGray;
             border-radius: $radius;
           }
         }
