@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { tap } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { DataService, MovieComplete } from '../../services/data.service';
 
 @Component({
@@ -11,7 +11,7 @@ export class MoviesComponent implements OnDestroy, OnInit {
   public decades: number[] = [];
   public filteredMovies: MovieComplete[] = [];
   public movies: MovieComplete[] = [];
-  private moviesSubscription: any;
+  private moviesSubscription: Subscription;
 
   constructor(private dataService: DataService) {}
 

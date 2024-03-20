@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 export class NavigationService {
   constructor(private router: Router) {}
 
-  public goTo(...args: string[]): Promise<any> {
+  public goTo(...args: string[]): Promise<boolean | void> {
     return this.router.navigate(args).then((event) => {
       if (!event) {
         if (isDevMode()) {
