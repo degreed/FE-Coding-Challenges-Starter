@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { mockProvider, Spectator } from '@ngneat/spectator';
 import { createComponentFactory } from '@ngneat/spectator/jest';
-import { DataService } from '../../services/data.service';
+import { MovieDataLibService } from 'movie-data-lib';
 import { MovieDetailComponent } from './movie-detail.component';
 import { of } from 'rxjs';
 
@@ -50,7 +50,7 @@ const mockMovie = {
 const mockActivatedRoute = mockProvider(ActivatedRoute, {
   params: of({ id: mockMovieId })
 });
-const mockDataService = mockProvider(DataService, {
+const mockDataService = mockProvider(MovieDataLibService, {
   getMovie: jest.fn().mockReturnValue(of(mockMovie))
 });
 

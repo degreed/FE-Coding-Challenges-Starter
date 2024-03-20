@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { DataService, MovieComplete } from '../../services/data.service';
+import { MovieDataLibService, MovieComplete } from 'movie-data-lib';
 
 @Component({
   selector: 'app-movies',
@@ -13,7 +13,7 @@ export class MovieListComponent implements OnDestroy, OnInit {
   public movies: MovieComplete[] = [];
   private moviesSubscription: Subscription;
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: MovieDataLibService) {}
 
   public ngOnInit(): void {
     this.moviesSubscription = this.dataService.getMovies().subscribe((data) => {

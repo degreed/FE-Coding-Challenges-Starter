@@ -1,9 +1,26 @@
+// import { TestBed } from '@angular/core/testing';
+
+// describe('MovieDataLibService', () => {
+//   let service: MovieDataLibService;
+
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({});
+//     service = TestBed.inject(MovieDataLibService);
+//   });
+
+//   it('should be created', () => {
+//     expect(service).toBeTruthy();
+//   });
+// });
+
+
+
 import { HttpClient } from '@angular/common/http';
 import { mockProvider, SpectatorService } from '@ngneat/spectator';
 import { createServiceFactory } from '@ngneat/spectator/jest';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { DataService } from './data.service';
+import { MovieDataLibService } from './movie-data-lib.service';
 
 const mockGet = jest.fn().mockReturnValue(of([]));
 const mockHttpClient = mockProvider(HttpClient, {
@@ -47,11 +64,11 @@ const mockMovies = [
   }
 ];
 
-describe('DataService', () => {
-  let spectator: SpectatorService<DataService>;
-  let service: DataService;
+describe('MovieDataLibService', () => {
+  let spectator: SpectatorService<MovieDataLibService>;
+  let service: MovieDataLibService;
   const createService = createServiceFactory({
-    service: DataService,
+    service: MovieDataLibService,
     imports: [],
     declarations: [],
     providers: [mockHttpClient]

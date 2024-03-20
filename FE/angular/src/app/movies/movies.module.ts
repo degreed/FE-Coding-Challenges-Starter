@@ -10,7 +10,7 @@ import { GoDetailsComponent } from './navigation/go-details/go-details.component
 import { GoImdbComponent } from './navigation/go-imdb/go-imdb.component';
 import { NavigationService } from '../services/navigation.service';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
-import { DataService } from './services/data.service';
+import { MovieDataLibService } from 'movie-data-lib';
 
 @NgModule({
   declarations: [
@@ -23,6 +23,6 @@ import { DataService } from './services/data.service';
     DecadesComponent
   ],
   imports: [CommonModule, HttpClientModule, MoviesRoutingModule],
-  providers: [DataService, NavigationService]
+  providers: [MovieDataLibService, NavigationService]
 })
 export class MoviesModule {}

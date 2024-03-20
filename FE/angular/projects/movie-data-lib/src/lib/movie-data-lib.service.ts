@@ -40,7 +40,7 @@ export interface MovieData {
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class MovieDataLibService {
   private decades: number[] = [];
   private posterUrl = 'https://m.media-amazon.com/images/M/';
   private replacePosterUrl = '/assets/images/';

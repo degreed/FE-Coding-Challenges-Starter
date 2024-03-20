@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { tap, Subscription, switchMap } from 'rxjs';
-import { DataService, MovieComplete } from '../../services/data.service';
+import { MovieDataLibService, MovieComplete } from 'movie-data-lib';
 
 @Component({
   selector: 'app-movie',
@@ -12,7 +12,7 @@ export class MovieDetailComponent implements OnDestroy, OnInit {
   public movieId = '';
   private movieSubscription: Subscription;
 
-  constructor(private activatedRoute: ActivatedRoute, private dataService: DataService) {}
+  constructor(private activatedRoute: ActivatedRoute, private dataService: MovieDataLibService) {}
 
   public ngOnInit() {
     this.movieSubscription = this.activatedRoute.params
