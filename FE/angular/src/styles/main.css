@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .nav-button {
+    background-color: theme('colors.dark-brown');
+    border-radius: theme('borderRadius.1xl');
+    font-size: theme('fontSize.lg');
+    font-family: theme('fontFamily.boldy');
+    color: white;
+    padding-left: theme('spacing.9');
+    padding-right: theme('spacing.9');
+    padding-top: theme('spacing.3');
+    padding-bottom: theme('spacing.3');
+    text-decoration: none;
+    border-style: none;
+  }
+  .nav-button-active {
+    background-color: theme('colors.sky-blue') !important;
+    color: white !important;
+    text-shadow: 3px 4px 0px rgba(0, 0, 0, 0.1);
+    border-width: 1px !important;
+    border-color: theme('colors.sky-blue') !important;
+  }
+  /* ... */
+}

@@ -1,33 +1,37 @@
-<div class="grid grid-bleed">
-  <div class="image col-3"><img [src]="movie.Poster" [alt]="movie.Title"/></div>
-  <div class="content col-9 col-grid">
-    <div class="title">{{ movie.Title }} <span *ngIf="movie.Year">({{ movie.Year }})</span></div>
-    <ul class="metadata">
-      <li class="rated">
-        <div>{{ movie.Rated }}</div>
+<div class="flex flex-wrap">
+  <div class="pr-5 w-1/4 p-4">
+    <img [src]="movie.Poster" [alt]="movie.Title" class="w-full rounded-1xl" />
+  </div>
+  <div class="text-darker-gray w-3/4 p-4">
+    <div class="text-xl font-accent font-bold border-b border-dark-gray">
+      {{ movie.Title }} <span *ngIf="movie.Year">({{ movie.Year }})</span>
+    </div>
+    <ul class="mt-2.5 font-sans overflow-hidden text-base">
+      <li class="text-darker-gray font-rating ml-0 inline-block">
+        <div class="inline-block px-[6px] py-[6px] border-darker-gray border rounded-1xl">{{ movie.Rated }}</div>
       </li>
-      <li class="runtime">{{ movie.Runtime }}</li>
-      <li class="genre" *ngIf="movie.Genre">{{ movie.Genre }}</li>
-      <li class="release">{{ movie.Released }}</li>
+      <li class="ml-9 inline-block">{{ movie.Runtime }}</li>
+      <li class="ml-9 inline-block" *ngIf="movie.Genre">{{ movie.Genre }}</li>
+      <li class="text-right ml-0 float-right inline-block">{{ movie.Released }}</li>
     </ul>
-    <ul class="details" *ngIf="movie.Director">
-      <li>
+    <ul class="text-sm mt-2.5 font-sans" *ngIf="movie.Director">
+      <li class="mt-1.5">
         <strong>Director:</strong>
         {{ movie.Director }}
       </li>
-      <li>
+      <li class="mt-1.5">
         <strong>Writer:</strong>
         {{ movie.Writer }}
       </li>
-      <li>
+      <li class="mt-1.5">
         <strong>Stars:</strong>
         {{ movie.Actors }}
       </li>
     </ul>
-    <div class="plot">
+    <div class="mt-4 mb-2.5 font-sans text-lg font-normal">
       {{ movie.Plot }}
     </div>
-    <div class="nav flex-footer">
+    <div class="text-right w-full mt-auto mb-0">
       <ng-content></ng-content>
     </div>
   </div>

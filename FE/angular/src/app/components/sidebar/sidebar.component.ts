@@ -11,8 +11,7 @@ export interface Link extends BaseLink {
 
 @Component({
   selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  templateUrl: './sidebar.component.html'
 })
 export class SidebarComponent {
   @Input() public links: BaseLink[];

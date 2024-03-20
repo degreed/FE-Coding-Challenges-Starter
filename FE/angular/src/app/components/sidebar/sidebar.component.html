@@ -1,9 +1,9 @@
-<nav *ngIf="links.length">
+<nav *ngIf="links.length" class="mb-10 text-right">
   <button
     *ngFor="let link of links; let index = index"
     (click)="onClick(link, index)"
-    class="nav"
-    [class.active]="link.isActive"
+    class="inline-block bg-off-white text-med-gray font-accent text-base font-bold px-6 py-3.5 border border-light-gray border-l-transparent cursor-default first:border-l first:border-light-gray first:rounded-tl-1xl first:rounded-bl-1xl last:border-l-transparent last:rounded-tr-1xl last:rounded-br-1xl"
+    [class.nav-button-active]="link.isActive"
   >
     {{ link.label }}
   </button>

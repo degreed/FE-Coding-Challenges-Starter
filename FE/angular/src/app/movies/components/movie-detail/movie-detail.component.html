@@ -1,7 +1,10 @@
 <app-go-back></app-go-back>
 
 <ul *ngIf="movie" class="movie">
-  <li class="grid grid-bleed">
+  <li
+    class="grid grid-bleed"
+    class="max-w-3xl mb-7 p-3.5rounded-lg border-2 mx-auto bg-pale-gray border-darker-gray rounded-1xl"
+  >
     <app-movie-card [movie]="movie">
       <app-go-imdb [imdbId]="movie.imdbID"></app-go-imdb>
     </app-movie-card>

@@ -6,7 +6,10 @@
 ></app-decades>
 
 <ul class="movies" *ngIf="filteredMovies.length">
-  <li *ngFor="let movie of filteredMovies" class="grid">
+  <li
+    *ngFor="let movie of filteredMovies"
+    class="max-w-3xl mb-7 p-3.5rounded-lg border-2 mx-auto bg-pale-gray border-darker-gray rounded-1xl"
+  >
     <app-movie-card [movie]="movie">
       <app-go-details [imdbId]="movie.imdbID"></app-go-details>
     </app-movie-card>
