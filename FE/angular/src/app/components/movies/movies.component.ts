@@ -16,13 +16,11 @@ export class MoviesComponent implements OnDestroy, OnInit {
   constructor(private dataService: DataService) {}
 
   public ngOnInit(): void {
-    this.moviesSubscription = this.dataService.getMovies().pipe(
-      tap((data) => {
-        this.decades = data.Decades;
-        this.movies = data.Search;
-        this.displayMovies();
-      })
-    );
+    this.moviesSubscription = this.dataService.getMovies().subscribe((data) => {
+      this.decades = data.Decades;
+      this.movies = data.Search;
+      this.displayMovies();
+    });
   }
 
   public ngOnDestroy(): void {
