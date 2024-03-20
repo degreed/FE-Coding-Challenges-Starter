@@ -1,0 +1,34 @@
+<div class="grid grid-bleed">
+  <div class="image col-3"><img [src]="movie.Poster" [alt]="movie.Title"/></div>
+  <div class="content col-9 col-grid">
+    <div class="title">{{ movie.Title }} <span *ngIf="movie.Year">({{ movie.Year }})</span></div>
+    <ul class="metadata">
+      <li class="rated">
+        <div>{{ movie.Rated }}</div>
+      </li>
+      <li class="runtime">{{ movie.Runtime }}</li>
+      <li class="genre" *ngIf="movie.Genre">{{ movie.Genre }}</li>
+      <li class="release">{{ movie.Released }}</li>
+    </ul>
+    <ul class="details" *ngIf="movie.Director">
+      <li>
+        <strong>Director:</strong>
+        {{ movie.Director }}
+      </li>
+      <li>
+        <strong>Writer:</strong>
+        {{ movie.Writer }}
+      </li>
+      <li>
+        <strong>Stars:</strong>
+        {{ movie.Actors }}
+      </li>
+    </ul>
+    <div class="plot">
+      {{ movie.Plot }}
+    </div>
+    <div class="nav flex-footer">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

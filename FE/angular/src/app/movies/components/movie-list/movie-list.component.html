@@ -7,22 +7,8 @@
 
 <ul class="movies" *ngIf="filteredMovies.length">
   <li *ngFor="let movie of filteredMovies" class="grid">
-    <div class="image col-3"><img [src]="movie.Poster" [alt]="movie.Title"/></div>
-    <div class="content col-9 col-grid">
-      <div class="title">{{ movie.Title }}</div>
-      <ul class="metadata">
-        <li class="rated">
-          <div>{{ movie.Rated }}</div>
-        </li>
-        <li class="runtime">{{ movie.Runtime }}</li>
-        <li class="release">{{ movie.Released }}</li>
-      </ul>
-      <div class="plot">
-        {{ movie.Plot }}
-      </div>
-      <div class="nav flex-footer">
-        <app-go-details [imdbId]="movie.imdbID"></app-go-details>
-      </div>
-    </div>
+    <app-movie-card [movie]="movie">
+      <app-go-details [imdbId]="movie.imdbID"></app-go-details>
+    </app-movie-card>
   </li>
 </ul>

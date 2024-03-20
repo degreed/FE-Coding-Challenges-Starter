@@ -4,7 +4,7 @@ import { tap, Subscription, switchMap } from 'rxjs';
 import { MovieDataLibService, MovieComplete } from 'movie-data-lib';
 
 @Component({
-  selector: 'app-movie',
+  selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html'
 })
 export class MovieDetailComponent implements OnDestroy, OnInit {
