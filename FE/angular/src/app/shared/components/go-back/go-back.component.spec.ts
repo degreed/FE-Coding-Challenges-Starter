@@ -1,19 +1,19 @@
 import { mockProvider } from '@ngneat/spectator';
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
-import { NavigationService } from '../navigation.service';
-import { GoDetailsComponent } from './go-details.component';
+import { NavigationService } from '../../../core/services/navigation/navigation.service';
+import { GoBackComponent } from './go-back.component';
 
 const mockGoTo = jest.fn();
 const mockNavigationService = mockProvider(NavigationService, {
   goTo: mockGoTo
 });
 
-describe('GoDetailsComponent', () => {
-  let spectator: Spectator<GoDetailsComponent>;
-  let component: GoDetailsComponent;
+describe('GoBackComponent', () => {
+  let spectator: Spectator<GoBackComponent>;
+  let component: GoBackComponent;
 
   const createComponent = createComponentFactory({
-    component: GoDetailsComponent,
+    component: GoBackComponent,
     imports: [],
     declarations: [],
     providers: [mockNavigationService],
@@ -32,10 +32,10 @@ describe('GoDetailsComponent', () => {
 
   describe('navigateTo', () => {
     beforeEach(() => {
-      component.navigateTo('tt1234');
+      component.navigateTo();
     });
     test('should call navigateService.goTo', () => {
-      expect(mockGoTo).toBeCalledWith('/movie', 'tt1234');
+      expect(mockGoTo).toBeCalledWith('/');
     });
   });
 });

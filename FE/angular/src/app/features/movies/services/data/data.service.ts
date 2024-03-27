@@ -1,41 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, isDevMode } from '@angular/core';
-import { forkJoin, Observable, of, throwError } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
-
-interface SearchResults {
-  Response: string;
-  Search: Movie[];
-  totalResults: string;
-}
-
-interface Movie {
-  imdbID: string;
-  Poster: string;
-  Title: string;
-  Type: string;
-  Year: string | number;
-}
-
-interface MovieDetails extends Movie {
-  Actors: string;
-  Director: string;
-  Genre: string;
-  Plot: string;
-  Rated: string;
-  Released: string;
-  Runtime: string;
-  Writer: string;
-}
-
-export interface MovieComplete extends MovieDetails {
-  Year: number;
-}
-
-export interface MovieData {
-  Decades: number[];
-  Search: MovieComplete[];
-}
+import { Injectable } from '@angular/core';
+import { forkJoin, Observable, of } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
+import { MovieComplete, MovieData, MovieDetails, SearchResults } from '../../interfaces/movie.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -66,7 +33,7 @@ export class DataService {
         Genre,
         imdbID,
         Plot,
-        Poster: Poster.replace(this.posterUrl, this.replacePosterUrl),
+        Poster: Poster?.replace(this.posterUrl, this.replacePosterUrl),
         Rated,
         Released,
         Runtime,
@@ -79,8 +46,10 @@ export class DataService {
   }
 
   public getMovies(): Observable<MovieData> {
-    if (this.storedMovies && this.storedMovies.Search.length) {
-      return of(this.storedMovies);
+    if (this.storedMovies) {
+      if (this.storedMovies.Search.length) {
+        return of(this.storedMovies);
+      }
     }
 
     return this.http.get<SearchResults>(`${this.serviceUrl}s=Batman&type=movie`).pipe(

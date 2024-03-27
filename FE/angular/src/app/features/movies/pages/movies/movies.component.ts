@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { tap } from 'rxjs';
-import { DataService, MovieComplete } from '../../services/data.service';
+import { Subject, takeUntil } from 'rxjs';
+import { DataService } from '../../services/data/data.service';
+import { MovieComplete, MovieData } from 'src/app/features/movies/interfaces/movie.interface';
 
 @Component({
   selector: 'app-movies',
@@ -11,22 +12,30 @@ export class MoviesComponent implements OnDestroy, OnInit {
   public decades: number[] = [];
   public filteredMovies: MovieComplete[] = [];
   public movies: MovieComplete[] = [];
-  private moviesSubscription: any;
+
+  public destroy$ = new Subject();
 
   constructor(private dataService: DataService) {}
 
   public ngOnInit(): void {
-    this.moviesSubscription = this.dataService.getMovies().pipe(
-      tap((data) => {
-        this.decades = data.Decades;
-        this.movies = data.Search;
-        this.displayMovies();
-      })
-    );
+    this.dataService
+      .getMovies()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (data: MovieData) => {
+          this.decades = data.Decades;
+          this.movies = data.Search;
+          this.displayMovies();
+        },
+        error: (error) => {
+          console.error('Failed to fetch movies data', error);
+        }
+      });
   }
 
   public ngOnDestroy(): void {
-    this.moviesSubscription.unsubscribe();
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 
   public displayMovies(decade?: number): void {
