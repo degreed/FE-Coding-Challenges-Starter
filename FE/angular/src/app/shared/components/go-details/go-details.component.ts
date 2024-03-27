@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NavigationService } from '../navigation.service';
+import { NavigationService } from '../../../core/services/navigation/navigation.service';
 
 @Component({
   selector: 'app-go-details',

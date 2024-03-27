@@ -22,6 +22,9 @@
       color: $darkerGray;
 
       .title {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
         font-family: $fontStackAccent;
         font-size: $headerFontSize;
         font-weight: $fontWeightBold;
